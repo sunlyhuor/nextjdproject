@@ -1,8 +1,15 @@
-import CardComponent from "@/components/Card"
+import { Suspense, useEffect, useState , React } from "react"
+import dynamic from "next/dynamic"
+import LoadingComponent from "@/components/Loading"
+const CardComponent = dynamic(()=> import("@/components/Card") , {
+    loading:(
+        <div className="text-center" >
+            <LoadingComponent />
+        </div>
+    )
+} )
 import axios from "axios"
 import { BackendLink } from "@/components/components"
-import { useEffect, useState } from "react"
-import LoadingComponent from "@/components/Loading"
 import Head from "next/head"
 
 export async function getServerSideProps(){
@@ -40,8 +47,8 @@ export default function CoursePage( { datas_json } ){
 
     
     useEffect(()=>{
-        setData(datas_json )
-        console.log( datas_json.responses )
+        // setData(datas_json )
+        // console.log( datas_json.responses )
         // FetchCourse() 
 
     } , [ BuyCourseLoad ] )
@@ -56,40 +63,78 @@ export default function CoursePage( { datas_json } ){
                 <title>Courses Page - Sun LyHuor </title>
             </Head>
             <main className="w-10/12 mx-auto" >
-                <section className="flex gap-[10px] justify-center flex-wrap" >
-                    
-                    { 
-                        // Loading?(
-                            datas_json.responses ? datas_json.responses.map(( d , k )=>{
-                                return(
-                                    // <div>
-                                    //     <h1>{d.course_title}</h1>
-                                    //     <button className={"button mt-[10px] "} ><span>GO TO LOGIN</span><i></i></button>
-                                    // </div>
-                                    <CardComponent 
-                                        buycourses={d.buycourses} 
-                                        button={"See more"} 
-                                        count={ d.buycourses.length } 
-                                        id={ d.course_id  } 
-                                        key={k} 
-                                        title={ d.course_title } 
-                                        price={d.course_price} 
-                                        picture={d.course_thumbnail} 
-                                        link={"/courses/"+d.course_title} 
-                                        discount={d.course_discount} date={new Date( d.course_discount_date )} 
-                                        created={ new Date(d.course_createat) } 
-                                        month={ d.course_month } 
-                                        type={"course"} 
-                                        cart={true}  
-                                    />
-                                )
-                            }) :<h1>No mroe</h1>
-                        // ):(
-                        //     <LoadingComponent />
-                        // )
-                    }
 
-                </section>
+                    <Suspense fallback={ 
+                        <div className="text-center" >
+                            <LoadingComponent />
+                        </div>
+                     }>
+                        <section className="flex gap-[10px] justify-center flex-wrap">
+                            {datas_json.responses
+                                ? datas_json.responses.map((d, k) => {
+                                    return (
+                                        <CardComponent
+                                            buycourses={d.buycourses}
+                                            button={"See more"}
+                                            count={d.buycourses.length}
+                                            id={d.course_id}
+                                            key={k}
+                                            title={d.course_title}
+                                            price={d.course_price}
+                                            picture={d.course_thumbnail}
+                                            link={"/courses/" + d.course_title} 
+                                            discount={d.course_discount} 
+                                            date={
+                                                new Date(d.course_discount_date)
+                                            } created={
+                                                new Date(d.course_createat)
+                                            }
+                                            month={
+                                                d.course_month
+                                            }
+                                            type={"course"}
+                                            cart = {true}
+
+                                        />
+                                    );
+                                })
+                                : ""}
+                        </section>
+                    </Suspense>
+
+                {/* <Suspense fallback={<p></p>} > */}
+
+                    {/* <section className="flex gap-[10px] justify-center flex-wrap" >
+                            
+                                { 
+                                    datas_json.responses ? datas_json.responses.map(( d , k )=>{
+                                        return(
+                                                // <h1 key={k} >sds</h1>
+
+                                            <CardComponent 
+                                                buycourses={d.buycourses} 
+                                                button={"See more"} 
+                                                count={ d.buycourses.length } 
+                                                id={ d.course_id  } 
+                                                key={k} 
+                                                title={ d.course_title } 
+                                                price={d.course_price} 
+                                                picture={d.course_thumbnail} 
+                                                link={"/courses/"+d.course_title} 
+                                                discount={d.course_discount} date={new Date( d.course_discount_date )} 
+                                                created={ new Date(d.course_createat) } 
+                                                month={ d.course_month } 
+                                                type={"course"} 
+                                                cart={true}  
+                                            /> 
+                                        )
+                                    }) :""
+                                }
+
+                        
+                    </section> */}
+                {/* </Suspense> */}
+                
                 <h1 className="text-center flex justify-center py-[10px] " >
                     <span>No More</span>
                 </h1>

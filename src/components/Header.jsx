@@ -114,7 +114,7 @@ export default function HeaderComponent(){
                             
                             {
                                 ( Logined )?(   
-                                   <li> <Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white` } href={"signout"} >Log Out</Link> </li>
+                                   <li> <Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white` } href={"/signout"} >Log Out</Link> </li>
                                 ):(
                                     <>
                                         <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white `} href="/signup">Sign Up</Link></li>

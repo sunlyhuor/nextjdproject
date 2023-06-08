@@ -65,6 +65,8 @@ export default function CartAdminPage(){
         }
     }
 
+   
+
     function SeachingResults(){
         if( Search == "" ){
             return Carts
@@ -77,10 +79,20 @@ export default function CartAdminPage(){
                 return Carts.filter(d=>{
                     return d.auth.auth_username.toLowerCase().match( Search )
                 })
+            }
+            else if( Option == "buy_id" ){
+                return Carts.filter(d=>{
+                    return d.buy_course_id == Number(Search) 
+                })
             }else{
                 return Carts.filter(d=>{
-                    return ( new Date(d.buy_course_updateat).getDate() == new Date(Search).getDate() &&  new Date(d.buy_course_updateat).getMonth()+1 == new Date(Search).getMonth()+1 && new Date(d.buy_course_updateat).getFullYear == new Date(Search).getFullYear() )
-                })
+                    return ( 
+                            new Date( d.buy_course_updateat ).getDate() == new Date( Search ).getDate() && 
+                            new Date( d.buy_course_updateat ).getMonth() + 1 == new Date( Search ).getMonth() + 1 && 
+                            new Date( d.buy_course_updateat ).getFullYear() == new Date( Search ).getFullYear()
+                        )
+                    }
+                )
             }
         }
     }
@@ -109,8 +121,8 @@ export default function CartAdminPage(){
             {
                 Dailog?(
                     <main>
-                        <div className="z-[11] opacity-[0.3] bg-black w-full h-screen fixed top-0 left-0" ></div>
-                        <div id="defaultModal" tabIndex="-1" aria-hidden="true" className="fixed top-0 left-0 right-0 z-[111] w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div className="z-[5] opacity-[0.3] bg-black w-full h-screen fixed top-0 left-0" ></div>
+                        <div id="defaultModal" tabIndex="-1" aria-hidden="true" className="fixed top-0 left-0 right-0 z-[6] w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div className="relative w-full z-[12] max-h-full">
                                 <div className="relative bg-white m-auto  lg:w-3/12 sm:w-7/12 xl:w-4/12 rounded-lg shadow dark:bg-gray-700">
                                     <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
@@ -156,6 +168,7 @@ export default function CartAdminPage(){
                         <option value="title">Course title</option>
                         <option value="username">Username</option>
                         <option value="date">Date</option>
+                        <option value="buy_id">Buy Id</option>
                     </select>
             </div>
             {
