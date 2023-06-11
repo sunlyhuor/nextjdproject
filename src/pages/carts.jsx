@@ -78,13 +78,13 @@ export default function CartPage(){
                                 </div>
                                 <div className="px-5 pb-5">
                                     <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{d.course.course_title}</h5>
-                                    <p>
+                                    <p className="p-1" > 
                                         TID: { d.payment_tid }
                                     </p>
-                                    <p>
+                                    <p className="p-1" >
                                         Bought on : { `${ new Date( d.buy_course_createat ).getDate() < 10 ? "0"+new Date( d.buy_course_createat ).getDate() : new Date( d.buy_course_createat ).getDate() }-${ new Date( d.buy_course_createat ).getMonth()+1 < 10 ? "0"+(new Date( d.buy_course_createat ).getMonth()+1) : new Date( d.buy_course_createat ).getMonth()+1 }-${new Date( d.buy_course_createat ).getFullYear()}` }
                                     </p>
-                                    <p>
+                                    <p className="p-1" >
                                         Expired on : { `${ new Date( d.expired_date ).getDate() < 10 ? "0" + new Date( d.expired_date ).getDate() : new Date( d.expired_date ).getDate() }-${ (new Date( d.expired_date ).getMonth()+1) < 10 ? "0"+(new Date( d.expired_date ).getMonth()+1) :new Date( d.expired_date ).getMonth()+1 }-${new Date( d.expired_date ).getFullYear()}` }
                                     </p>
                                     <div className="flex items-center justify-between">

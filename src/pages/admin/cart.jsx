@@ -100,11 +100,7 @@ export default function CartAdminPage(){
     useEffect(()=>{
 
         if( JsCookie.get("isAdmin") != "true" ){
-            // JsCookie.remove("isAdmin")
-            // JsCookie.remove("logined")
-            // localStorage.setItem("access_token" , "")
-            // localStorage.setItem("refresh_token" , "")
-            navigate.push("/signout")
+            navigate.push("/")
         }   
 
         FetchingCart()

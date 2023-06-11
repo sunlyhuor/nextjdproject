@@ -68,7 +68,6 @@ export default function SigninPage(){
                 setAlert(true)
                 JsCookie.set( "access_token" , data.data.token , {
                     expires:1,
-                    httpOnly:true
                 })
                 JsCookie.set( "refresh_token" , data.data.refresh_token ,{
                     expires:1

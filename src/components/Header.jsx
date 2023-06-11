@@ -39,7 +39,7 @@ export default function HeaderComponent(){
     
                 GenerateNewToken( jsCookie.get("refresh_token") )
                     .then((d)=>{
-                        jsCookie.set("access_token" , d.access_token )
+                        jsCookie.set("access_token" , d.access_token , { expires:1 }  )
                         // console.log("genterate")
                     }).catch(e=>{
                         // console.log(e)
@@ -94,6 +94,7 @@ export default function HeaderComponent(){
                                                 <li>
                                                     <Link href="/admin/course" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin Courses</Link>
                                                     <Link href="/admin/cart" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin Carts</Link>
+                                                    <Link href="/admin/blog" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin Blogs</Link>
                                                 </li>
                                             </ul>
                                         </div>

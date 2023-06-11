@@ -54,7 +54,7 @@ export default function CardComponent({ buycourses , id , title , picture , link
         <>
             
             <ByCourse course_id={id} course_title={title} BuyCourseLoad={ BuyCourseLoad } SetBuyCourseLoad={ ()=> setBuyCourseLoad( !BuyCourseLoad ) } />
-            <main suppressHydrationWarning={true} data-aos="zoom-in" className={"hover:scale-[1.01] relative hover:duration-300 max-w-sm bg-white min-[0px]:w-full sm:md:w-6/12 md:w-[48%] lg:w-6/12 xl:w-[24%] border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"} >
+            <main suppressHydrationWarning={true} data-aos="zoom-in" className={"hover:scale-[1.01] relative hover:duration-300 max-w-sm bg-white min-[0px]:w-11/12 sm:w-6/12 md:w-6/12 xl:w-3/12 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"} >
                 <Link className="w-[250px] h-[200px] block w-full overflow-hidden" href={link}>
                         <Image priority={""} width={200} height={100} className="rounded object-auto w-full h-[200px] hover:scale-110 hover:duration-300" src={picture} alt={title} />
                 </Link>
@@ -84,25 +84,29 @@ export default function CardComponent({ buycourses , id , title , picture , link
                             </>
                         ):""
                     }
-                    <p className="mb-[5px]" >
+                    <p className="mb-[5px] p-0" >
                         Posted on : { `${ new Date( created ).getDate() < 10 ? "0" + new Date( created ).getDate() : new Date( created ).getDate() }-${ new Date( created ).getMonth()+1 < 10 ? "0"+(new Date( created ).getMonth()+1) : new Date( created ).getMonth()+1 }-${ new Date( created ).getFullYear() }` }
                     </p>
                     {
                         type == "course"?(
-                            <p className="mb-[5px]" >
+                            <p className="mb-[5px] p-0" >
                                 Count : { count }
                             </p>
                         ):""
                     }
-                    <p className="mb-[5px]" >
-                        {
-                            new Date().getTime() < new Date( date ).getTime() ? (
-                                <>
-                                    Discount end on : { `${ new Date( date ).getDate() < 10 ? "0" + new Date( date ).getDate() : new Date( date ).getDate() }-${ new Date( date ).getMonth()+1 < 10 ? "0"+(new Date( date ).getMonth()+1) : new Date( date ).getMonth()+1 }-${ new Date( date ).getFullYear() }` }
-                                </>
-                            ):"No discount yet!"
-                        }
+                    {
+                        type == "course"?(
+                            <p className="mb-[5px] p-0" >
+                                {
+                                    new Date().getTime() < new Date( date ).getTime() ? (
+                                        <>
+                                            Discount end on : { `${ new Date( date ).getDate() < 10 ? "0" + new Date( date ).getDate() : new Date( date ).getDate() }-${ new Date( date ).getMonth()+1 < 10 ? "0"+(new Date( date ).getMonth()+1) : new Date( date ).getMonth()+1 }-${ new Date( date ).getFullYear() }` }
+                                        </>
+                                    ):"No discount yet!"
+                                }
                     </p>
+                        ):""
+                    }
                     <section  className="flex justify-between"  >
                             <Link href={link}  >
                                 <button className={"button mt-[10px] "} ><span>{button}</span><i></i></button>
