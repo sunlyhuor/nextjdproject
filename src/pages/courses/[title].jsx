@@ -191,17 +191,17 @@ export default function SignleCoursePage( { datas_json } ){
                                                                 }
                                                                 
                                                             </div>
-                                                            <p>
+                                                            <p className="p-0" >
                                                                 Date :  { datas_json[0].course_month + "/" } { (datas_json[0].course_month <= 1 )? <sub>Month</sub> :  ( <sub>Months</sub> ) }
                                                             </p>
-                                                            <p>
+                                                            <p className="p-0" >
                                                                 {datas_json[0].course_price? ( new Date() < new Date( datas_json[0].course_discount_date ) ? <del>{datas_json[0].course_price+"$"}</del> : datas_json[0].course_price + "$" ) :""} { (new Date() < new Date( datas_json[0].course_discount_date ) ) ? ">" : "" } { (new Date() < new Date( datas_json[0].course_discount_date ) ) ? datas_json[0].course_price - ( datas_json[0].course_discount * datas_json[0].course_price /100 )+"$" : "" }
                                                                 {/* price : { Course.course_price }$ */}
                                                             </p>
-                                                            <p>
+                                                            <p className="p-0" >
                                                                 posted on : { new Date( datas_json[0].course_createat  ).getDate() + "-" + (new Date( datas_json[0].course_createat ).getMonth()+1) + "-" + new Date( datas_json[0].course_createat  ).getFullYear() }
                                                             </p>
-                                                            <p>
+                                                            <p className="p-0" >
                                                                 Posted By : { datas_json[0].auth.auth_lastname }
                                                             </p>
                                                             <p className="px-[10px]" >

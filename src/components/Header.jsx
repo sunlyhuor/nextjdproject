@@ -79,22 +79,22 @@ export default function HeaderComponent(){
                     </div>
                     <nav className={`z-10 absolute top-[50px] right-[20px] z-[40] bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ${Hamberger ? "block":"hidden"} `}>
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
-                            <li><Link className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white `} href="/">Home</Link></li>
-                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ` } href="/about" >About</Link></li>
-                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ` } href="/courses" >Courses</Link></li>
-                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ` } href="/blogs" >Blogs</Link></li>
-                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ` } href="/plans" >Plans</Link></li>
+                            <li><Link className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/" ? "bg-gray-100 rounded" : "" } `} href="/">Home</Link></li>
+                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/about" ? "bg-gray-100 rounded" : "" }` } href="/about" >About</Link></li>
+                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/courses" ? "bg-gray-100 rounded" : "" }` } href="/courses" >Courses</Link></li>
+                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/blogs" ? "bg-gray-100 rounded" : "" }` } href="/blogs" >Blogs</Link></li>
+                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/plans" ? "bg-gray-100 rounded" : "" }` } href="/plans" >Plans</Link></li>
                             {
                                 Admin?
                                 (
                                     <li className="relative" >
-                                        <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown" onClick={()=> setAdminSubMenu( !AdminSubMenu ) } data-dropdown-placement="right-start" type="button" className={`flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white`} >Admin<svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg></button>
+                                        <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown" onClick={()=> setAdminSubMenu( !AdminSubMenu ) } data-dropdown-placement="right-start" type="button" className={`flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ ( router.asPath == "/admin/course" || router.asPath == "/admin/blog" || router.asPath == "/admin/cart" ) ? "bg-gray-100 rounded" : "" }`} >Admin<svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg></button>
                                         <div id="doubleDropdown" className={`z-10 absolute min-[0px]:left-[-100px] sm:left-[-180px] bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ${ AdminSubMenu ? "" : "hidden" } `}>
                                             <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton">
                                                 <li>
-                                                    <Link href="/admin/course" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin Courses</Link>
-                                                    <Link href="/admin/cart" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin Carts</Link>
-                                                    <Link href="/admin/blog" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin Blogs</Link>
+                                                    <Link href="/admin/course" className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white ${ router.asPath == "/admin/course" ? "bg-gray-100 rounded" : "" } ` }>Admin Courses</Link>
+                                                    <Link href="/admin/cart" className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white ${ router.asPath == "/admin/cart" ? "bg-gray-100 rounded" : "" } `}>Admin Carts</Link>
+                                                    <Link href="/admin/blog" className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white ${ router.asPath == "/admin/blog" ? "bg-gray-100 rounded" : "" }`}>Admin Blogs</Link>
                                                 </li>
                                             </ul>
                                         </div>
@@ -105,8 +105,8 @@ export default function HeaderComponent(){
                             {
                                 ( Logined )?(
                                     <>
-                                        <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ` } href="/carts" >Carts</Link></li>
-                                        <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ` } href="/profile" >Profile</Link></li>
+                                        <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/carts" ? "bg-gray-100 rounded" : "" }` } href="/carts" >Carts</Link></li>
+                                        <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/profile" ? "bg-gray-100 rounded" : "" }` } href="/profile" >Profile</Link></li>
                                     </>
                                 ):(
                                     ""

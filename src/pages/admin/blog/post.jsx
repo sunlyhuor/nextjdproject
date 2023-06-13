@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import JsCookie from "js-cookie"
 import { useRouter } from 'next/router';
-
 import { Editor } from '@tinymce/tinymce-react';
 import Media from '@/components/admin/components/Medias';
 import AlertComponent from '@/components/Alert';
@@ -130,7 +129,7 @@ export default function AdminPostBlog() {
                 "table","help","wordcount"
             ],
             toolbar:
-                'undo redo | casechange blocks | image | link | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+                'undo redo | casechange blocks | image | media | link | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
             }}
         />
         <form className='px-[20px]' >

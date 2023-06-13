@@ -109,11 +109,11 @@ export default function CourseAdminPage(){
                                                 {/* </Link> */}
                                                 <div className="p-5">
                                                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{ d.course_title }</h5>
-                                                    <p>Price : ${ d.course_price }</p>
-                                                    <p>Discount : { d.course_discount }% </p>
-                                                    <p>Discount End Date : { d.course_discount_date } </p>
-                                                    <p>Status : { d.status.status_name }</p>
-                                                    <p>Count : { d.buycourses.length }</p>
+                                                    <p className='p-1'>Price : ${ d.course_price }</p>
+                                                    <p className='p-1'>Discount : { d.course_discount }% </p>
+                                                    <p className='p-1'>Discount End Date : { d.course_discount_date } </p>
+                                                    <p className='p-1'>Status : { d.status.status_name }</p>
+                                                    <p className='p-1'>Count : { d.buycourses.length }</p>
                                                     {/* <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{ d.course_description }</p> */}
                                                     <button onClick={()=> {
                                                         setCourseId( d.course_id )
