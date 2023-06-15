@@ -75,7 +75,8 @@ export default function SigninPage(){
                 setMessage( data.data.message )
                 navigate.replace("/")
             } catch (error) {
-                console.log( error )
+                // alert(error.toString())
+                console.error(error)
                 // JsCookie.set("logined" , false)
                 setLoading(true)
                 setAlert(true)

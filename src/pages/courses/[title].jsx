@@ -155,7 +155,7 @@ export default function SignleCoursePage( { datas_json } ){
                                                         <ByCourse course_id={ datas_json[0].course_id } course_title={datas_json[0].course_title} BuyCourseLoad={ BuyCourseLoad } SetBuyCourseLoad={ ()=> setBuyCourseLoad( !BuyCourseLoad ) } />
                                                         <section className="min-[0px]:w-11/12 sm:w-8/12 m-auto rounded flex flex-col gap-[15px]" >
                                                             <div className="w-full relative" >
-                                                                <Image quality={90} width={100} className="w-full" height={100} src={ datas_json[0].course_thumbnail } alt={ datas_json[0].course_title } />
+                                                                <Image quality={90} width={2000} className="w-full" height={2000} src={ datas_json[0].course_thumbnail } alt={ datas_json[0].course_title } />
                                                                 <span className="absolute top-[10px] right-[-15px] text-white rotate-45 bg-red-600 px-[30px] " >
                                                                     { 
                                                                         (new Date() < new Date( datas_json[0].course_discount_date ) )? ( ( datas_json[0].course_discount + "%" ) ) : ("")

@@ -5,8 +5,9 @@ import axios from "axios"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import UpdateTID from "./UpdateTID"
-
+// import UpdateTID from "./UpdateTID"
+import { faEye, faSpinner, faX } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 
 export default function CardComponent({ buycourses , id , title , picture , link , button , discount , price , date , type , created , month , cart , count }){
@@ -52,11 +53,14 @@ export default function CardComponent({ buycourses , id , title , picture , link
 
     return(
         <>
-            
-            <ByCourse course_id={id} course_title={title} BuyCourseLoad={ BuyCourseLoad } SetBuyCourseLoad={ ()=> setBuyCourseLoad( !BuyCourseLoad ) } />
+            {
+                ( type == "course" )?(
+                    <ByCourse course_id={id} course_title={title} BuyCourseLoad={ BuyCourseLoad } SetBuyCourseLoad={ ()=> setBuyCourseLoad( !BuyCourseLoad ) } />
+                ):""
+            }
             <main suppressHydrationWarning={true} data-aos="zoom-in" className={"hover:scale-[1.01] relative hover:duration-300 max-w-sm bg-white min-[0px]:w-11/12 sm:w-6/12 md:w-6/12 xl:w-3/12 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"} >
-                <Link className="w-[250px] h-[200px] block w-full overflow-hidden" href={link}>
-                        <Image priority={""} width={200} height={100} className="rounded object-auto w-full h-[200px] hover:scale-110 hover:duration-300" src={picture} alt={title} />
+                <Link className="min-[0px]:h-[150px] sm:h-[200px] block w-full overflow-hidden" href={link}>
+                        <Image priority={""} width={2000} height={2000} className="rounded object-auto w-full min-[0px]:h-[150px] sm:h-[200px] hover:scale-110 hover:duration-300" src={picture} alt={title} />
                 </Link>
                 <section className="p-5" >
 
@@ -122,19 +126,19 @@ export default function CardComponent({ buycourses , id , title , picture , link
                                                 ( getExpireDate( JsCookie.get("code") , buycourses ) )?(
                                                     ( getStatus( JsCookie.get("code") , buycourses , "completed" ) )?(
                                                         <Link href={"/courses/"+title}>
-                                                            <button className={" bg-green-600 py-[3px] lg:text-sm hover:opacity-[0.6] active:bg-blue-600 text-white px-[15px] rounded mt-[10px] "} ><span>Watching Now</span><i></i></button>
+                                                            <button className={" bg-green-600 py-[3px] lg:text-sm hover:opacity-[0.6] active:bg-blue-600 text-white px-[15px] rounded mt-[10px] "} ><span className="flex items-center gap-[5px]" > <FontAwesomeIcon icon={faEye} /> Watching Now</span><i></i></button>
                                                         </Link>
                                                     ):(
                                                         ( getStatus( JsCookie.get("code") , buycourses , "padding" ) )?(
-                                                            <button className={" bg-red-600 py-[3px] cursor-not-allowed lg:text-sm hover:opacity-[0.6] active:bg-blue-600 text-white px-[15px] rounded mt-[10px] "} ><span>Padding</span><i></i></button>
+                                                            <button className={" bg-red-600 py-[3px] cursor-not-allowed lg:text-sm hover:opacity-[0.6] active:bg-blue-600 text-white px-[15px] rounded mt-[10px] "} ><span> <FontAwesomeIcon className="animate-spin" icon={faSpinner} /> Padding</span><i></i></button>
                                                         ):(
-                                                            <button className={" bg-yellow-400 py-[3px] lg:text-sm hover:opacity-[0.6] active:bg-blue-600 text-white px-[15px] rounded mt-[10px] "} onClick={()=> navigate.push("/carts") } ><span>Wrong TID</span><i></i></button>
+                                                            <button className={" bg-yellow-400 py-[3px] lg:text-sm hover:opacity-[0.6] active:bg-blue-600 text-white px-[15px] rounded mt-[10px] "} onClick={()=> navigate.push("/carts") } ><span> <FontAwesomeIcon className="animate-ping duration-300 text-black" icon={faX} /> Wrong TID</span><i></i></button>
                                                         )
                                                     )
                                                 ):(
                                                     <button className={"button mt-[10px] "} onClick={()=> setBuyCourseLoad(true) } ><span>buy again</span><i></i></button>
                                                 )
-                                            ):(
+                                            ):( 
                                                 <button className={"button mt-[10px] "} onClick={()=> setBuyCourseLoad(true) } ><span>ADD TO CART</span><i></i></button>
                                             )
                                         )

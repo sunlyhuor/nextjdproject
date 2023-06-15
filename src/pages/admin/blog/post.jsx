@@ -106,32 +106,6 @@ export default function AdminPostBlog() {
         <div className='flex justify-end p-[10px]' >
             <button onClick={()=> setLoadMedia(true) } className='bg-blue-600 text-white py-[5px] px-[20px] rounded text-center active:bg-yellow-500 hover:opacity-[0.8] ' >Select Medias</button>
         </div>
-        <Editor
-            // onInit={(evt, editor) => editorRef.current = editor}
-            onChange={e=> setArticles( e.target.getContent() ) }
-            id={"text_editor"}
-            initialValue=""
-            init={{
-            height: "100vh",
-            menubar: false,
-            plugins: [
-                'a11ychecker','advlist','advcode','advtable','autolink',
-                'checklist','export', 'lists','link','image',
-                'charmap','preview', 'anchor', 
-                'searchreplace', 
-                'visualblocks',
-                //'powerpaste',
-                "fullscreen",
-                "formatpainter",
-                "insertdatetime",
-                "media",
-                //"noneditable",            
-                "table","help","wordcount"
-            ],
-            toolbar:
-                'undo redo | casechange blocks | image | media | link | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
-            }}
-        />
         <form className='px-[20px]' >
                 <div className='my-[10px] flex flex-col ' >
                     <label htmlFor='title' >Title</label>
@@ -165,6 +139,32 @@ export default function AdminPostBlog() {
                     <button  className='bg-blue-600 text-white py-[5px] px-[20px] rounded text-center active:bg-yellow-500 hover:opacity-[0.8] ' onClick={ handleSubmit }>Publish</button>
                 </div>
         </form  >
+        <Editor
+            // onInit={(evt, editor) => editorRef.current = editor}
+            onChange={e=> setArticles( e.target.getContent() ) }
+            id={"text_editor"}
+            initialValue=""
+            init={{
+            height: "100vh",
+            menubar: false,
+            plugins: [
+                'a11ychecker','advlist','advcode','advtable','autolink',
+                'checklist','export', 'lists','link','image',
+                'charmap','preview', 'anchor', 
+                'searchreplace', 
+                'visualblocks',
+                //'powerpaste',
+                "fullscreen",
+                "formatpainter",
+                "insertdatetime",
+                "media",
+                //"noneditable",            
+                "table","help","wordcount"
+            ],
+            toolbar:
+                'undo redo | casechange blocks | image | media | link | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+            }}
+        />
     </main>
   );
 }

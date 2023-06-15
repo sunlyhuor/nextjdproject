@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import {faBurger , faXmark } from "@fortawesome/free-solid-svg-icons"
-// import { Link , useNavigate } from "react-router-dom"
 import Link from "next/link"
 import { GenerateNewToken } from "@/components/components"
-// import Font
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import jsCookie from "js-cookie"
 import { useRouter } from "next/router"
+import Image from "next/image"
+import LogoHuorClass from "@/assets/logo/huorclass_logo.png"
 
 export default function HeaderComponent(){
     let [ Hamberger , setHamberger ] = useState(false)
@@ -62,7 +62,7 @@ export default function HeaderComponent(){
         <>
             <header className="relative" >
                 <section className="w-full text-center min-[0px]:mb-[15px] sm:mb-[20px]">
-                    <Link href={"/"}><h1 className="text-center font-bold text-[25px] hover:underline inline cursor-pointer active:text-yellow-200" >Hour Class</h1></Link>
+                        <Image onClick={()=> router.push("/") } className="mx-auto cursor-pointer min-[0px]:w-[60px] md:w-[100px] " src={LogoHuorClass}  width={2000} height={2000} alt="Sun LyHuor Logo" />
                 </section>
 
                 <div>

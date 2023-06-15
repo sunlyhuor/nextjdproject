@@ -8,9 +8,12 @@ import { BackendLink } from '@/components/components';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare , faTrash } from "@fortawesome/free-solid-svg-icons"
+import AlertComponent from '@/components/Alert';
 
 export default function AdminBlog() {
     const navigate = useRouter()
+    let [ Alert , setAlert ] = useState(false)
+    let [ Message , setMessage ] = useState(null)
     let [ Blogs , setBlogs ] = useState([])
 
     async function getAllBLog(){
@@ -28,6 +31,31 @@ export default function AdminBlog() {
         }
     }
 
+    async function HandleDelete(id){
+        if( confirm("Are u want to delete") ){
+            try {
+                const datas = await axios.delete( BackendLink() + "/api/v1/blog/delete" , 
+                    {
+                        data:{
+                            blog:Number(id)
+                        },
+                        headers:{
+                            "access_token":JsCookie.get("access_token")
+                        }
+                    }
+                )
+                console.log(datas)
+                setMessage( datas.data.message )
+                setAlert(true)
+                getAllBLog()
+            } catch (error) {
+                setAlert(true)
+                setMessage( error.response.data.message )
+                console.log( error )
+            }
+        }
+    }
+
     useEffect(()=>{
 
         if( JsCookie.get("isAdmin") != "true" ){
@@ -41,6 +69,11 @@ export default function AdminBlog() {
   return (
     <>
         <main>
+            <AlertComponent 
+                alert={Alert}
+                message={Message}
+                changeAlert={()=> setAlert(!Alert) }
+            />
             <div className='flex justify-end gap-[10px]' >
                 <Link href={"blog/post"} className='bg-blue-600 text-white py-[3px] px-[20px] rounded text-center active:bg-yellow-500 hover:opacity-[0.8] ' ><button>Post</button></Link>
                 {/* <button className='bg-blue-600 text-white py-[3px] px-[20px] rounded text-center active:bg-yellow-500 hover:opacity-[0.8] ' >Post</button> */}
@@ -54,7 +87,11 @@ export default function AdminBlog() {
 
                                 Blogs.map((d,k)=>(
                                     <div className='min-[0px]:w-full sm:w-5/12 lg:w-3/12 ' key={k} >
-                                        <Image  className='w-full h-auto rounded' width={10000} height={1000} src={d.blog_thumbnail} alt='' />
+                                        {/* Image 700x400 */}
+                                    <Link className="w-[250px] h-[200px] block w-full overflow-hidden" href={""}>
+                                        <Image priority={""} width={2000} height={2000} className="rounded object-auto w-full h-[200px] hover:scale-110 hover:duration-300" src={d.blog_thumbnail} alt={""} />
+                                    </Link>
+                                        {/* <Image  className='w-full h-auto rounded' width={10000} height={1000} src={d.blog_thumbnail} alt='' /> */}
                                         <p className='p-1 twolines' >
                                             { d.blog_title }
                                         </p>
@@ -76,7 +113,7 @@ export default function AdminBlog() {
                                                 EDIT
                                             </Link>
 
-                                            <button className='flex items-center gap-[5px] bg-red-500 active:bg-yellow-300 text-white py-1 px-3 rounded ' >
+                                            <button onClick={()=> HandleDelete( d.blog_id ) } className='flex items-center gap-[5px] bg-red-500 active:bg-yellow-300 text-white py-1 px-3 rounded ' >
                                                 <FontAwesomeIcon icon={ faTrash } />
                                                 DELETE
                                             </button>

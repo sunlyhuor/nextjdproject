@@ -1,14 +1,22 @@
 import { Suspense, useEffect, useState , React } from "react"
 import dynamic from "next/dynamic"
 import LoadingComponent from "@/components/Loading"
-const CardComponent = dynamic(()=> import("@/components/Card") , {ssr:true} )
+import CardComponent from "@/components/Card"
+// const CardComponent = dynamic(()=> import("@/components/Card") , {ssr:true} )
 import axios from "axios"
 import { BackendLink } from "@/components/components"
 import Head from "next/head"
+import { useRouter } from "next/router"
+import { faAnglesLeft , faAngleRight, faAnglesRight } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-export async function getServerSideProps(){
+
+
+export async function getServerSideProps( { query } ){
     try{
-        const datas = await fetch( BackendLink() + "/api/v1/course" )
+        let lm = isNaN( query.limit ) ? 15 : Number(query.limit)
+        let pg = isNaN( query.page ) ? 1 : Number( query.page ) 
+        const datas = await fetch( `${BackendLink()}/api/v1/course?limit=${lm}&page=${pg}` )
         const datas_json = await datas.json()
         return{
             props:{
@@ -25,8 +33,8 @@ export async function getServerSideProps(){
 }
 
 export default function CoursePage( { datas_json } ){
-
-    let [ datas , setData ] = useState([])
+    const router = useRouter()
+    let [ datas , setData ] = useState( datas_json.responses )
     let [ Loading , setLoading ] = useState(false)
     let [ BuyCourseLoad , setBuyCourseLoad ] = useState(false)
 
@@ -49,9 +57,10 @@ export default function CoursePage( { datas_json } ){
 
     
     useEffect(()=>{
-        // setData(datas_json )
-        // console.log( datas_json.responses )
-        // FetchCourse() 
+       
+        if( !router.query.limit ){
+            router.push("?limit=15&page=1")
+        }
 
     } , [ BuyCourseLoad ] )
 
@@ -59,13 +68,17 @@ export default function CoursePage( { datas_json } ){
         <>
             <Head>
                 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-                {/* <meta name="keywords" content={ datas_json[0].course_description } /> */}
+                <meta name="description" content={ "Course page in sun lyhuor or huor class wesite" } />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta http-equiv="X-UA-Compatible" content="IE=7" />
                 <title>Courses Page - Sun LyHuor </title>
             </Head>
-            <main className="w-10/12 mx-auto" >
-
+            <main className="w-10/12 mx-auto relative" >
+                    <div className="text-center flex gap-[10px] justify-start items-center my-[10px] sticky z-[11] bg-white top-[0px] right-0 " >
+                        <button onClick={()=> router.push( `?limit=15&page=${ isNaN( router.query.page ) ? 1 : Number( router.query.page ) <= 1 ? 1 : Number(router.query.page) - 1 }` ) } > <FontAwesomeIcon className="text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" icon={faAnglesLeft} /> </button>
+                        <span className="text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white   " >{router.query.page ? router.query.page : 1 }</span>
+                        <button onClick={()=> router.push( `?limit=15&page=${ isNaN( router.query.page ) ? 1 : datas_json.responses.length > 0 ? Number( router.query.page ) + 1 : Number( router.query.page ) }` ) } > <FontAwesomeIcon className="text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" icon={faAnglesRight} /> </button>
+                    </div>
                     <Suspense fallback={ 
                         <div className="text-center" >
                             <LoadingComponent />
@@ -77,7 +90,7 @@ export default function CoursePage( { datas_json } ){
                                     return (
                                         <CardComponent
                                             buycourses={d.buycourses}
-                                            button={"See more"}
+                                            button={"learn more"}
                                             count={d.buycourses.length}
                                             id={d.course_id}
                                             key={k}
@@ -100,13 +113,14 @@ export default function CoursePage( { datas_json } ){
                                         />
                                     );
                                 })
-                                : ""}
+                                :
+                                (
+                                    <button>No blog</button>
+                                )
+                            }
                         </section>
                     </Suspense>
-                
-                <h1 className="text-center flex justify-center py-[10px] " >
-                    <span>No More</span>
-                </h1>
+                   
             </main>
         </>
     )

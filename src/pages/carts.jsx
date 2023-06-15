@@ -71,10 +71,10 @@ export default function CartPage(){
 
                         Cart.map((d , k)=>(
                             
-                            <div data-aos="zoom-in-down" key={k} className="min-[0px]:w-full sm:w-5/12 lg:w-3/12 xl-4/12 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <div data-aos="zoom-in-down" key={k} className="min-[0px]:w-full sm:w-5/12 md:w-5/12 lg:w-5/12 xl-4/12 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                 <div>
                                     {/* { d.buy_course_id } */}
-                                    <Image width={100} height={100} className="h-[200px] w-full rounded-t-lg" src={ d.course.course_thumbnail } alt="product image" />
+                                    <Image width={2000} height={2000} className="h-[200px] w-full rounded-t-lg" src={ d.course.course_thumbnail } alt="product image" />
                                 </div>
                                 <div className="px-5 pb-5">
                                     <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{d.course.course_title}</h5>

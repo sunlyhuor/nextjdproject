@@ -118,9 +118,10 @@ export default function SignUpPage(){
                 setAlert(true)
                 setMessage( response.data.message )
             } catch (error) {
-                setLoading(true)
-                setAlert(true)
-                setMessage( error.response.data.message )
+                console.log( error )
+                // setLoading(true)
+                // setAlert(true)
+                // setMessage( error.response.data.message )
             }
             finally{
                 setLoading(false)

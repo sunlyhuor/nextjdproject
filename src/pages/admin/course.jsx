@@ -105,7 +105,7 @@ export default function CourseAdminPage(){
                                     <div key={k} className="max-w-sm bg-white border border-gray-200 rounded-lg min-[0px]:w-11/12 sm:w-5/12 lg:w-4/12 xl:w-3/12 shadow dark:bg-gray-800 dark:border-gray-700">
                                           <div>
                                                 {/* <Link className='w-full h-[200px]' href={"courses/"+d.course_title}> */}
-                                                <Image width={100} height={100} quality={100} className="rounded-t-lg h-[200px] w-full " src={ d.course_thumbnail } alt="" />
+                                                <Image width={2000} height={2000} quality={100} className="rounded-t-lg h-[200px] w-full " src={ d.course_thumbnail } alt="" />
                                                 {/* </Link> */}
                                                 <div className="p-5">
                                                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{ d.course_title }</h5>

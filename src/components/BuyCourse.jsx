@@ -4,6 +4,7 @@ import { BackendLink } from "../components/components"
 import AlertComponent from "./Alert"
 import LoadingComponent from "./Loading"
 import jsCookie from "js-cookie"
+import { useRouter } from "next/router"
 
 export default function ByCourse( { course_id , BuyCourseLoad , course_title , SetBuyCourseLoad } ){
 
@@ -14,8 +15,9 @@ export default function ByCourse( { course_id , BuyCourseLoad , course_title , S
     let [ Alert , setAlert ] = useState(false)
     let [ Message , setMessage ] = useState("")
     let [ Loading , setLoading ] = useState(false)
+    const router = useRouter()
 
-    async function fetchingMethod(){
+    async function fetchingPayment(){
 
         try {
 
@@ -52,14 +54,13 @@ export default function ByCourse( { course_id , BuyCourseLoad , course_title , S
                     }
                 }
                 )
+                alert("sdaksdjkasjd")
                 // let datas = comfirm( "Go to your carts" )
-                // if( datas ){
-                //     console.log("true")
-                // }else{
-                //     console.log("false")
+                // if( comfirm( "Do you want to cart?" ) ){
+                //     router.push("/carts")
                 // }
-                // setAlert(true)
-                // setMessage( responses.data.message )
+                setAlert(true)
+                setMessage( responses.data.message )
                 setTimeout(()=>{
                     SetBuyCourseLoad()
                 } , 3000 )
@@ -82,7 +83,7 @@ export default function ByCourse( { course_id , BuyCourseLoad , course_title , S
 
     useEffect(()=>{ 
 
-        fetchingMethod()
+        fetchingPayment()
 
     } , [] )
 
