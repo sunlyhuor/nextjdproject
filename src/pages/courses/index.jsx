@@ -63,7 +63,7 @@ export default function CoursePage( { datas_json } ){
         }
 
     } , [ BuyCourseLoad ] )
-
+    
     return(
         <>
             <Head>
@@ -75,16 +75,16 @@ export default function CoursePage( { datas_json } ){
             </Head>
             <main className="w-10/12 mx-auto relative" >
                     <div className="text-center flex gap-[10px] justify-start items-center my-[10px] sticky z-[11] bg-white top-[0px] right-0 " >
-                        <button onClick={()=> router.push( `?limit=15&page=${ isNaN( router.query.page ) ? 1 : Number( router.query.page ) <= 1 ? 1 : Number(router.query.page) - 1 }` ) } > <FontAwesomeIcon className="text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" icon={faAnglesLeft} /> </button>
-                        <span className="text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white   " >{router.query.page ? router.query.page : 1 }</span>
-                        <button onClick={()=> router.push( `?limit=15&page=${ isNaN( router.query.page ) ? 1 : datas_json.responses.length > 0 ? Number( router.query.page ) + 1 : Number( router.query.page ) }` ) } > <FontAwesomeIcon className="text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" icon={faAnglesRight} /> </button>
+                        <button onClick={()=> router.push( `?limit=15&page=${ isNaN( router.query.page ) ? 1 : Number( router.query.page ) <= 1 ? 1 : Number(router.query.page) - 1 }` ) } > <FontAwesomeIcon className="min-[0px]:text-sm lg:text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" icon={faAnglesLeft} /> </button>
+                        <span className="min-[0px]:text-sm lg:text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white   " >{router.query.page ? router.query.page : 1 }</span>
+                        <button onClick={()=> router.push( `?limit=15&page=${ isNaN( router.query.page ) ? 1 : datas_json.responses.length > 0 ? Number( router.query.page ) + 1 : Number( router.query.page ) }` ) } > <FontAwesomeIcon className="min-[0px]:text-sm lg:text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" icon={faAnglesRight} /> </button>
                     </div>
                     <Suspense fallback={ 
                         <div className="text-center" >
                             <LoadingComponent />
                         </div>
                      }>
-                        <section className="flex gap-[10px] justify-center flex-wrap">
+                        <section className="flex min-[0px]:justify-center sm:justify-start flex-wrap gap-[10px]">
                             {datas_json.responses
                                 ? datas_json.responses.map((d, k) => {
                                     return (

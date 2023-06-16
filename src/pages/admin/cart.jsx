@@ -59,13 +59,11 @@ export default function CartAdminPage(){
             setAlert(true)
 
         } catch (error) {
-            // console.log(error)
+            console.log(error)
             setMessage( error.response.data.message )
             setAlert(true)
         }
-    }
-
-   
+    } 
 
     function SeachingResults(){
         if( Search == "" ){

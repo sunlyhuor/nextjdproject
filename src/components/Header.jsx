@@ -7,6 +7,8 @@ import jsCookie from "js-cookie"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import LogoHuorClass from "@/assets/logo/huorclass_logo.png"
+import Head from "next/head"
+import Icons from "@/assets/logo/huorclass_logo.png"
 
 export default function HeaderComponent(){
     let [ Hamberger , setHamberger ] = useState(false)
@@ -62,7 +64,10 @@ export default function HeaderComponent(){
         <>
             <header className="relative" >
                 <section className="w-full text-center min-[0px]:mb-[15px] sm:mb-[20px]">
-                        <Image onClick={()=> router.push("/") } className="mx-auto cursor-pointer min-[0px]:w-[60px] md:w-[100px] " src={LogoHuorClass}  width={2000} height={2000} alt="Sun LyHuor Logo" />
+                    <Link href={"/"} className="mx-auto cursor-pointer min-[0px]:w-[60px] md:w-[100px]" >
+                        <h1>Huor Class</h1>
+                    </Link>
+                        {/* <Image onClick={()=> router.push("/") } className="mx-auto cursor-pointer min-[0px]:w-[60px] md:w-[100px] " src={LogoHuorClass}  width={2000} height={2000} alt="Sun LyHuor Logo" /> */}
                 </section>
 
                 <div>
@@ -81,8 +86,8 @@ export default function HeaderComponent(){
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                             <li><Link className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/" ? "bg-gray-100 rounded" : "" } `} href="/">Home</Link></li>
                             <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/about" ? "bg-gray-100 rounded" : "" }` } href="/about" >About</Link></li>
-                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/courses" ? "bg-gray-100 rounded" : "" }` } href="/courses" >Courses</Link></li>
-                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/blogs" ? "bg-gray-100 rounded" : "" }` } href="/blogs" >Blogs</Link></li>
+                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ (router.asPath == "/courses" || router.asPath == "/courses?limit="+router.query.limit+"&page="+router.query.page ) ? "bg-gray-100 rounded" : "" }` } href="/courses" >Courses</Link></li>
+                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ (router.asPath == "/blogs" || router.asPath == "/blogs?limit="+router.query.limit+"&page="+router.query.page ) ? "bg-gray-100 rounded" : "" }` } href="/blogs" >Blogs</Link></li>
                             <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/plans" ? "bg-gray-100 rounded" : "" }` } href="/plans" >Plans</Link></li>
                             {
                                 Admin?

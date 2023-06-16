@@ -132,7 +132,7 @@ export default function SignleCoursePage( { datas_json } ){
 
                             </Head>
                             <section className="min-[0px]:w-11/12 lg:w-7/12" >
-                                {
+                                {/* {
                                     checkVideo?(
                                         <div className="text-center mb-[25px]" >
                                             <ReactPlayer 
@@ -144,7 +144,7 @@ export default function SignleCoursePage( { datas_json } ){
                                                 url={ BackendLink()+`/api/v1/course/get/videos/${EpisodeID}/${CourseID}/${JsCookie.get("access_token")}` } />
                                         </div>
                                     ):""
-                                }
+                                } */}
 
                                 {
                                     !Loading ? (
@@ -225,6 +225,19 @@ export default function SignleCoursePage( { datas_json } ){
                             <section className="min-[0px]:w-7/12 lg:w-4/12" >
                                     <div className="" >
                                         <h1 className="text-center underline text-xl" >Episodes</h1>
+                                        {
+                                            checkVideo?(
+                                                <div className="text-center my-[25px]" >
+                                                    <ReactPlayer 
+                                                        loop
+                                                        playsinline
+                                                        controls
+                                                        pip={false}
+                                                        // onDuration={e=> console.log(e) }
+                                                        url={ BackendLink()+`/api/v1/course/get/videos/${EpisodeID}/${CourseID}/${JsCookie.get("access_token")}` } />
+                                                </div>
+                                            ):""
+                                        }
                                         {
                                             Loading?(
                                                 <div className="text-center" >

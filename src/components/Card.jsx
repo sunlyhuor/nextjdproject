@@ -58,9 +58,9 @@ export default function CardComponent({ buycourses , id , title , picture , link
                     <ByCourse course_id={id} course_title={title} BuyCourseLoad={ BuyCourseLoad } SetBuyCourseLoad={ ()=> setBuyCourseLoad( !BuyCourseLoad ) } />
                 ):""
             }
-            <main suppressHydrationWarning={true} data-aos="zoom-in" className={"hover:scale-[1.01] relative hover:duration-300 max-w-sm bg-white min-[0px]:w-11/12 sm:w-6/12 md:w-6/12 xl:w-3/12 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"} >
-                <Link className="min-[0px]:h-[150px] sm:h-[200px] block w-full overflow-hidden" href={link}>
-                        <Image priority={""} width={2000} height={2000} className="rounded object-auto w-full min-[0px]:h-[150px] sm:h-[200px] hover:scale-110 hover:duration-300" src={picture} alt={title} />
+            <main suppressHydrationWarning={true} data-aos="zoom-in" className={"min-[0px]:w-full sm:w-[49%] xl:w-[32%] hover:scale-[1.01] relative hover:duration-300 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"} >
+                <Link className="min-[0px]:h-[180px] sm:h-[200px] md:h-[230px] xl:h-[250px] block w-full overflow-hidden" href={link}>
+                        <Image priority={""} width={2000} height={2000} className="rounded object-auto w-full min-[0px]:h-[180px] sm:h-[200px] md:h-[230px] xl:h-[250px] hover:scale-110 hover:duration-300" src={picture} alt={title} />
                 </Link>
                 <section className="p-5" >
 
