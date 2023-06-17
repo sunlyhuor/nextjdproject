@@ -62,7 +62,7 @@ export default function SignleBlog( {datas_json  } ){
                                         <h1 className="md:text-2xl min-[0px]:text-2xl font-bold py-[10px] hover:underline cursor-pointer " >
                                             { datas_json.responses[0].blog_title }
                                         </h1>
-                                        <div className="flex items-center gap-[10px]" >
+                                        <div className=" flex min-[0px]:flex-col md:flex-row min-[0px]:gap-[0px] md:gap-[10px]" >
                                             <p className="opacity-[0.6] p-0" >{ `${ weekday[ new Date(datas_json.responses[0].blog_createat).getDay() ] }-${ new Date(datas_json.responses[0].blog_createat).getDate() }-${ (new Date(datas_json.responses[0].blog_createat).getMonth()+1) < 10 ? "0"+(new Date(datas_json.responses[0].blog_createat).getMonth()+1) : new Date(datas_json.responses[0].blog_createat).getMonth()+1 }-${ new Date(datas_json.responses[0].blog_createat).getFullYear() } ${ new Date(datas_json.responses[0].blog_createat).getHours() }:${ new Date(datas_json.responses[0].blog_createat).getMinutes() } ` }</p>
                                             <p className="opacity-[0.6] p-0 flex items-center gap-[5px]" >
                                                 <FontAwesomeIcon icon={faUser} />

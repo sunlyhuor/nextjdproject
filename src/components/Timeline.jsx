@@ -1,11 +1,11 @@
 import Link from "next/link"
 
-export default function Timeline( { title , datas } ){
+export default function Timeline( { title , datas , color } ){
     console.log(datas)
     return(
         <>
             <section>
-                <h1>{title}</h1>
+                <h1 className="py-[10px] text-2xl underline font-bold" >{title}</h1>
             </section>
             <ol className="relative border-l border-gray-200 dark:border-gray-700">                  
                 {
@@ -13,7 +13,7 @@ export default function Timeline( { title , datas } ){
                     datas.map(( d,  k )=>{
                         return(
                             <li key={k} className="mb-10 ml-4">
-                                <div className="absolute w-4 h-4 bg-red-500 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                                <div className={"absolute w-4 h-4 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700 " + color }></div>
                                 <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{ d.date }</time>
                                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{ d.content }</h3>
                                 <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{d.description}</p>

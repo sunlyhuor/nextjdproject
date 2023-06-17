@@ -18,13 +18,10 @@ export default function AboutPage(){
     ])
 
     return(
-        <main className="w-10/12 mx-auto" >
-
-            <Timeline 
-                title={"Education of History"}
-                datas={datas}
-            />
-
+        <main className="min-[0px]:w-11/12 md:w-8/12 mx-auto bg-red-200" >
+            <section>
+                <h1 className="h1" >About Us</h1>
+            </section>
         </main>
     )
 }

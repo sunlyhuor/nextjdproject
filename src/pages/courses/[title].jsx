@@ -173,7 +173,7 @@ export default function SignleCoursePage( { datas_json } ){
                                                                                 ):(
                                                                                     getStatus( JsCookie.get("code") , datas_json[0].buycourses , "padding" )?
                                                                                     (
-                                                                                        <button className={"button mt-[10px] "} ><span>Padding</span><i></i></button>
+                                                                                        <button className={"button mt-[10px] "} ><span>Comfirming</span><i></i></button>
                                                                                     ):
                                                                                     (
                                                                                         <button className={"button mt-[10px] "} ><span>wrong tid</span><i></i></button>
@@ -267,7 +267,7 @@ export default function SignleCoursePage( { datas_json } ){
                                                                                     getStatus( JsCookie.get("code") , datas_json[0].buycourses , "padding" )?
                                                                                     (
                                                                                         <h1 className=" cursor-not-allowed flex items-center justify-evenly my-[10px] py-[5px] bg-red-400 text-white font-bold rounded text-center" key={k} >
-                                                                                            <span>{d.episode }-{d.episode_title} <FontAwesomeIcon icon={faLock} /> </span>  {"Padding"}
+                                                                                            <span>{d.episode }-{d.episode_title} <FontAwesomeIcon icon={faLock} /> </span>  {"Confirming"}
                                                                                         </h1>
                                                                                     ):
                                                                                     (
