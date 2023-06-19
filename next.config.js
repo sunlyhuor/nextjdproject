@@ -14,6 +14,12 @@ const nextConfig = {
         port: '3000',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'school-ms-backend.onrender.com',
+        // port: '3000',
+        pathname: '/**',
+      },
     ],
   },
   reactStrictMode: true,
