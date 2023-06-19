@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Khmer:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&display=swap');
 
 .title{
     overflow: hidden;
@@ -17,7 +13,7 @@
 .button {
     position: relative;
     background: #444;
-    color: #fff;
+    color: #fff !important;
     text-decoration: none;
     text-transform: uppercase;
     border: none;
@@ -243,9 +239,12 @@
 
 /* Fonts */
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Russo One', 'Noto Serif Khmer' , sans-serif !important;
+  font-family: sans-serif , serif;
+  color: #462B58;
+
 }
 
-span,label,span,section,div,p,aside,address{
-  font-family: 'Geologica' , 'Konkhmer Sleokchher', 'cursive' , sans-serif !important;  
+span,p,a,label,div,section,aside,address{
+  /* color: #462B58; */
+  font-family: monospace,sans-serif;
 }

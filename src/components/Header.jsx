@@ -61,7 +61,7 @@ export default function HeaderComponent(){
             <header className="relative" >
                 <section className="w-full text-center min-[0px]:mb-[15px] sm:mb-[20px]">
                     <Link href={"/"} className="mx-auto cursor-pointer inline" >
-                        <h1 className="inline" >Huor Class</h1>
+                        <h1 className="inline" >Huor សដស</h1>
                     </Link>
                         {/* <Image onClick={()=> router.push("/") } className="mx-auto cursor-pointer min-[0px]:w-[60px] md:w-[100px] " src={LogoHuorClass}  width={2000} height={2000} alt="Sun LyHuor Logo" /> */}
                 </section>

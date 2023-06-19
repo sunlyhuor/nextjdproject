@@ -84,7 +84,8 @@ export default function CoursePage( { datas_json } ){
                             <LoadingComponent />
                         </div>
                      }>
-                        <section className="flex min-[0px]:justify-center sm:justify-start flex-wrap gap-[10px]">
+                        <section className="flex justify-center flex-wrap gap-[10px]">
+                        {/* <section className="flex min-[0px]:justify-center sm:justify-start flex-wrap gap-[10px]"> */}
                             {datas_json.responses
                                 ? datas_json.responses.map((d, k) => {
                                     return (

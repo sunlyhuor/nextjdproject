@@ -163,7 +163,7 @@ export default function SignleCoursePage( { datas_json } ){
                                                                 </span>
                                                             </div>
                                                             <div>
-                                                                <h2 className="text-2xl" >{ datas_json[0].course_title }</h2>
+                                                                <h2 className="text-2xl font-bold " >{ datas_json[0].course_title }</h2>
                                                                 {
                                                                     Logined?(
                                                                         CheckBuy( JsCookie.get("code") , datas_json[0].buycourses )?(
@@ -225,19 +225,7 @@ export default function SignleCoursePage( { datas_json } ){
                             <section className="min-[0px]:w-7/12 lg:w-4/12" >
                                     <div className="" >
                                         <h1 className="text-center underline text-xl" >Episodes</h1>
-                                        {
-                                            checkVideo?(
-                                                <div className="text-center my-[25px]" >
-                                                    <ReactPlayer 
-                                                        loop
-                                                        playsinline
-                                                        controls
-                                                        pip={false}
-                                                        // onDuration={e=> console.log(e) }
-                                                        url={ BackendLink()+`/api/v1/course/get/videos/${EpisodeID}/${CourseID}/${JsCookie.get("access_token")}` } />
-                                                </div>
-                                            ):""
-                                        }
+                                        
                                         {
                                             Loading?(
                                                 <div className="text-center" >
@@ -246,6 +234,19 @@ export default function SignleCoursePage( { datas_json } ){
                                             ):(
                                                 datas_json[0].episodes.length > 0?(
                                                     <div>
+                                                        {
+                                                            checkVideo?(
+                                                                <div className="text-center my-[25px] w-full" >
+                                                                    <ReactPlayer 
+                                                                        loop
+                                                                        playsinline
+                                                                        controls
+                                                                        pip={false}
+                                                                        // onDuration={e=> console.log(e) }
+                                                                        url={ BackendLink()+`/api/v1/course/get/videos/${EpisodeID}/${CourseID}/${JsCookie.get("access_token")}` } />
+                                                                </div>
+                                                            ):""
+                                                        }
                                                         {
                                                             datas_json[0].episodes.map((d,k)=>(
                                                                 Logined?(
