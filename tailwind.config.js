@@ -45,12 +45,26 @@ module.exports = {
             transform:"translateY(-10%)",
             // border:"5px"
           }
-        }
+        },
+        color:{
+          "0%":{
+              backgroundColor:"red",
+              transform:"scale(1)"
+          },
+          "50%":{
+            backgroundColor:"yellow"
+          },
+          "100%":{
+            backgroundColor:"blue",
+            transform:"scale(1.4)"
+          }
+        },
       },
       animation: {
         scale: 'scale 1s ease-in-out alternate infinite',
         spin: 'spin 2s ease-in-out infinite',
         laod: 'load 2s ease-in-out infinite alternate',
+        color: 'color 4s ease-in-out infinite alternate',
       }
     },
   },

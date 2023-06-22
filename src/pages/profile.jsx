@@ -108,8 +108,9 @@ export default function ProfilePage(){
                 {
                     Loading?(
                         <div className="flex justify-evenly flex-wrap " >
-                            <div>
-                                <img className="w-[200px] h-[200px] rounded-[50%] border-[5px] border-blue-600" src={ Profile.auth_photo } alt="" />
+                            <div className="relative" >
+                                <span className="animate-[color_4s_ease-in-out_infinite_alternate] h-[20px]  w-[20px] rounded-[50%] absolute top-0 right-10" ></span>
+                                <img className="w-[200px] h-[200px]  rounded-[50%] border-[5px] border-blue-600" src={ Profile.auth_photo } alt="" />
                             </div>
                             <div>
                                 <h2 className="text-center text-3xl py-[20px] underline "  >Personal Details</h2>

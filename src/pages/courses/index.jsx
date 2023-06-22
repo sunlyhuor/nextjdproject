@@ -86,8 +86,8 @@ export default function CoursePage( { datas_json } ){
                             <LoadingComponent />
                         </div>
                      }>
-                        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mb-[25px]">
                         {/* <section className="flex justify-center flex-wrap gap-[10px] mb-[25px]"> */}
+                        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mb-[25px]">
                             {datas_json.responses.length > 0
                                 ? datas_json.responses.map((d, k) => {
                                     return (
@@ -118,10 +118,11 @@ export default function CoursePage( { datas_json } ){
                                 })
                                 :
                                 (
-                                    <button>No course yet!  </button>
+                                    ""
                                 )
                             }
                         </section>
+                        <h1 className="text-center" >No more</h1>
                     </Suspense>
                    
             </main>
