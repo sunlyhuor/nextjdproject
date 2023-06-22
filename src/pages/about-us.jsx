@@ -56,13 +56,25 @@ export default function AboutPage(){
                 <h1 className="text-center text-[#9D38DD] font-bold text-3xl z-[10]" >Who Am I?</h1>
                 <div className="w-full" >
                     <div className="relative h-[40vh]" >
-                            <div className="absolute min-[0px]:left-[30%] md:left-[37%] xl:left-[43%] z-[1] min-[0px]:top-[30px] md:top-[40px] " >
+                            <div className="absolute text-center z-[20]  min-[0px]:top-[30px] md:top-[40px]" style={{ left:"50%" , transform: "translate(-50%, 0)" }} >
+                            {/* <div className="absolute min-[0px]:left-[30%] md:left-[37%] xl:left-[43%] z-[1] min-[0px]:top-[30px] md:top-[40px] " > */}
                                 <Image width={200} height={200} src={MyPic} className="rounded-[50%] w-[150px] h-[150px] animate-[scale_2s_ease-in-out_alternate_infinite]" alt ="sdasdhasj" />
                                 <h1 className="text-center mt-[20px] " >Sun LyHuor</h1>
+                                <button className="text-center bg-yellow-300 text-white rounded px-[10px] py-[3px] cursor-pointer z-[100] mx-auto shadow-lg shadow-yellow-500/50" onClick={()=> alert("Hello")} >GET MY CV</button>
                             </div>
-                            <div className="border border-blue-600 border-[3px] min-[0px]:left-[20%] min-[0px]:w-[220px] min-[0px]:h-[220px] md:w-[250px] md:h-[250px] xl:w-[300px] xl:h-[300px] absolute md:left-[30%] xl:left-[35%] animate-[spin_4s_ease-in-out_infinite] duration-300 " style={ { borderRadius:"74% 26% 57% 43% / 36% 50% 50% 64%" } } ></div>
-                            <div className="border border-red-600 border-[3px] min-[0px]:left-[20%] min-[0px]:w-[220px] min-[0px]:h-[220px] md:w-[250px] md:h-[250px] xl:w-[300px] xl:h-[300px] absolute md:left-[30%] xl:left-[35%] animate-[spin_3s_ease-in-out_infinite] duration-300 " style={ { borderRadius:"61% 39% 77% 23% / 28% 75% 25% 72% " } } ></div>
-                            <div className="border border-gray-600 border-[3px] min-[0px]:left-[20%] min-[0px]:w-[220px] min-[0px]:h-[220px] md:w-[250px] md:h-[250px] xl:w-[300px] xl:h-[300px] absolute md:left-[30%] xl:left-[35%] animate-[spin_2s_ease-in-out_infinite] duration-300 " style={ { borderRadius:"23% 77% 74% 26% / 49% 36% 64% 51% " } } ></div>
+                            <div className="w-full absolute flex justify-center bg-blue-400" >
+                               <div className="border mx-auto border-gray-600 border-[3px] min-[0px]:w-[220px] min-[0px]:h-[220px] md:w-[250px] md:h-[250px] xl:w-[300px] xl:h-[300px] absolute animate-[spin_2s_ease-in-out_infinite]" style={ { borderRadius:"74% 26% 57% 43% / 36% 50% 50% 64%" } } ></div>
+                            </div>
+                            <div className="w-full absolute flex justify-center bg-blue-400" >
+                                <div className="border border-red-600 border-[3px] min-[0px]:w-[220px] min-[0px]:h-[220px] md:w-[250px] md:h-[250px] xl:w-[300px] xl:h-[300px] absolute  animate-[spin_3s_ease-in-out_infinite]" style={ { borderRadius:"74% 26% 57% 43% / 36% 50% 50% 64%"} } ></div>
+                            </div>
+                            <div className="w-full absolute flex justify-center bg-blue-400" >
+                                <div className="border border-blue-600 border-[3px] min-[0px]:w-[220px] min-[0px]:h-[220px] md:w-[250px] md:h-[250px] xl:w-[300px] xl:h-[300px] absolute  animate-[spin_4s_ease-in-out_infinite]" style={ { borderRadius:"74% 26% 57% 43% / 36% 50% 50% 64%" } } ></div> 
+                            </div>
+
+                            {/* <div className="border border-blue-600 border-[3px] min-[0px]:w-[220px] min-[0px]:h-[220px] md:w-[250px] md:h-[250px] xl:w-[300px] xl:h-[300px] absolute  animate-[spin_4s_ease-in-out_infinite] duration-300 " style={ { borderRadius:"74% 26% 57% 43% / 36% 50% 50% 64%" } } ></div>
+                            <div className="border border-red-600 border-[3px] min-[0px]:w-[220px] min-[0px]:h-[220px] md:w-[250px] md:h-[250px] xl:w-[300px] xl:h-[300px] absolute  animate-[spin_3s_ease-in-out_infinite] duration-300 " style={ { borderRadius:"61% 39% 77% 23% / 28% 75% 25% 72% " } } ></div>
+                            <div className="border border-gray-600 border-[3px] min-[0px]:w-[220px] min-[0px]:h-[220px] md:w-[250px] md:h-[250px] xl:w-[300px] xl:h-[300px] absolute  animate-[spin_2s_ease-in-out_infinite] duration-300 " style={ { borderRadius:"23% 77% 74% 26% / 49% 36% 64% 51% " } } ></div> */}
                     </div>
                 </div>
                 <p className=" break-all px-5" >
@@ -87,13 +99,13 @@ export default function AboutPage(){
                 <h1 className="text-center  font-bold min-[0px]:text-xl md:text-5xl" >FOLLOW US ON</h1>
                 <section className="flex justify-center gap-[20px] py-[10px]" >
                     <a  title="Sun LyHuor - Facebook" href="https://www.facebook.com/sunleehuor/" target="_blank">
-                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className="text-blue-600 min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faFacebook} />
+                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className=" text-blue-600 min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faFacebook} />
                     </a>
                     <a  title="Sun LyHuor - Telegram" href="https://t.me/sunlyhuor" target="_blank">
-                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className="text-blue-600 min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faTelegram} />
+                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className=" text-blue-600 min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faTelegram} />
                     </a>
                     <a  title="Sun LyHuor - Linkedin" href="https://www.linkedin.com/in/sun-lyhuor-5042bb212/" target="_blank">
-                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className="text-blue-600 min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faLinkedin} />
+                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className=" text-blue-600 min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faLinkedin} />
                     </a>
                     <a  title="Sun LyHuor - TitTok" href="https://www.tiktok.com/@huor1234" target="_blank">
                         <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className=" min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faTiktok} />
