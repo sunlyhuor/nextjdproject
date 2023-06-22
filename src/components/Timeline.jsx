@@ -1,7 +1,6 @@
 import Link from "next/link"
 
 export default function Timeline( {  datas , color , title } ){
-    console.log(datas)
     return(
         <section  data-aos="fade-down-right">
             <section className="mb-[15px]" >

@@ -66,6 +66,15 @@ export default function AboutPage(){
                 </p>
             </section>
 
+
+            <section className="py-[25px]" >
+                <Timeline
+                    title={"History of educations"}
+                    datas={History}
+                    color={"bg-blue-400"}
+                />
+            </section>
+            
             <section data-aos="fade-down" >
                 <h1 className="text-center  font-bold min-[0px]:text-xl md:text-3xl" >FOLLOW US ON</h1>
                 <section className="flex justify-center gap-[20px] py-[10px]" >
@@ -82,14 +91,6 @@ export default function AboutPage(){
                         <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className=" min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faTiktok} />
                     </a>
                 </section>
-            </section>
-
-            <section className="py-[25px]" >
-                <Timeline
-                    title={"History of educations"}
-                    datas={History}
-                    color={"bg-blue-400"}
-                />
             </section>
             
             <section>
