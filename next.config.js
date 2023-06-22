@@ -1,26 +1,28 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images:{
-    remotePatterns: [
-      {
-        protocol: 'http',
-        hostname: '192.168.0.112',
-        port: '3000',
-        pathname: '/api/v1/**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '3000',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'school-ms-backend.onrender.com',
-        // port: '3000',
-        pathname: '/**',
-      },
-    ],
+    domains:[ "localhost" ]
+    // "localhost" , "https://school-ms-backend.onrender.com/"
+    // remotePatterns: [
+    //   {
+    //     protocol: 'http',
+    //     hostname: '192.168.0.112',
+    //     port: '3000',
+    //     pathname: '/api/v1/**',
+    //   },
+    //   {
+    //     protocol: 'http',
+    //     hostname: 'localhost',
+    //     port: '3000',
+    //     pathname: '/**',
+    //   },
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'schoolbackend-oq3b.onrender.com',
+    //     port: '',
+    //     pathname: '/api/v1/**',
+    //   },
+    // ],
   },
   reactStrictMode: true,
 }

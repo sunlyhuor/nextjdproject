@@ -3,6 +3,8 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook , faTelegram , faLinkedin, faTiktok } from "@fortawesome/free-brands-svg-icons"
 import ProgresComponent from "@/components/Progres";
+import MyPic from "@/assets/pictures/mypic.jpg"
+import Image from "next/image"
 
 export default function AboutPage(){
 
@@ -52,28 +54,32 @@ export default function AboutPage(){
         <main className="min-[0px]:w-11/12 md:w-8/12 mx-auto  mb-[50px]" >
             <section data-aos="fade-down" className="py-[25px]" >
                 <h1 className="text-center text-[#9D38DD] font-bold text-3xl" >Who Am I?</h1>
-                <p className=" break-all " >
-                  &nbsp; Hello my name is ស៊ុន លីហួរ (SUN LYHUOR), i'm 20 year old.So now i'm studying be come to 
+                <div className="text-center py-[20px] flex justify-center " >
+                    <Image width={200} height={200} src={MyPic} alt="sdasdhasj" />
+                </div>
+                <p className=" break-all px-5" >
+                  &nbsp; Hello my name is ស៊ុន លីហួរ (SUN LYHUOR), i'm 20 year old.
+                  {/* So now i'm studying be come to 
                   fullstack development but is not easy for me, because i need to learn alots of technologies such as 
                   Node Js, Nest Js, Javascript, Html, Css, PHP, Laravel, React Js, Next Js etc... I think so many technologies 
-                  i need to learn, so i'm improve my self from day to day, Thank you. 
+                  i need to learn, so i'm improve my self from day to day, Thank you.  */}
                 </p>
             </section>
 
             <section data-aos="fade-down" >
-                <h1 className="text-center  font-bold text-3xl" >FOLLOW US ON</h1>
+                <h1 className="text-center  font-bold min-[0px]:text-xl md:text-3xl" >FOLLOW US ON</h1>
                 <section className="flex justify-center gap-[20px] py-[10px]" >
                     <a  title="Sun LyHuor - Facebook" href="https://www.facebook.com/sunleehuor/" target="_blank">
-                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className="text-blue-600 text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faFacebook} />
+                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className="text-blue-600 min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faFacebook} />
                     </a>
                     <a  title="Sun LyHuor - Telegram" href="https://t.me/sunlyhuor" target="_blank">
-                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className="text-blue-600 text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faTelegram} />
+                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className="text-blue-600 min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faTelegram} />
                     </a>
                     <a  title="Sun LyHuor - Linkedin" href="https://www.linkedin.com/in/sun-lyhuor-5042bb212/" target="_blank">
-                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className="text-blue-600 text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faLinkedin} />
+                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className="text-blue-600 min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faLinkedin} />
                     </a>
                     <a  title="Sun LyHuor - TitTok" href="https://www.tiktok.com/@huor1234" target="_blank">
-                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className=" text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faTiktok} />
+                        <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className=" min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faTiktok} />
                     </a>
                 </section>
             </section>

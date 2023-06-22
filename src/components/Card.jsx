@@ -72,7 +72,7 @@ export default function CardComponent({ buycourses , id , title , picture , link
                             <>
                                 <div>
                                     <span>
-                                        {price? ( new Date().getTime() < new Date(date).getTime() ? <del>{"$"+price}</del> :"$" + price ) :""} { (new Date().getTime() < new Date(date).getTime()) ? sybol : "" } { (new Date().getTime() < new Date(date).getTime()) ? "$"+ (price - ( discount * price /100 )) : "" }
+                                        {price? ( new Date().getTime() < new Date(date).getTime() ? <del>{"$"+price}</del> :"$" + price ) :""} { (new Date().getTime() < new Date(date).getTime()) ? sybol : "" } { (new Date().getTime() < new Date(date).getTime()) ? "$"+ (price - ( discount * price /100 )).toFixed(2) : "" }
                                     </span>
                                     <span className="absolute top-[0px] right-[-10px] bg-red-600 text-white rotate-45 text-sm px-[20px] z-[25]">
                                         {

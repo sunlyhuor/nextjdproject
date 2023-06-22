@@ -112,7 +112,7 @@ export default function HeaderComponent(){
                                     ""
                                 )
                             }
-                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/about" ? "bg-gray-100 rounded" : "" }` } href="/about" >About</Link></li>
+                            <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/about-us" ? "bg-gray-100 rounded" : "" }` } href="/about-us" >About us</Link></li>
                             {
                                 ( Logined )?(   
                                    <li> <Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white` } href={"/signout"} >Log Out</Link> </li>

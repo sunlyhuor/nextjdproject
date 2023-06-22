@@ -22,18 +22,18 @@ export default function CartPage(){
     async function fetchCart(){
         try {  
             setLoading(false)
-            const datas = await axios.get( BackendLink() + "/api/v1/buycourse/mycart" , {
+            const datas = await axios.get( BackendLink() + "/api/v1/buycourse/mycart/" , {
                 headers:{
                     "access_token":JsCookie.get("access_token") 
                     // "access_token": localStorage.getItem("access_token") 
                 }
             } )
             // console.log(datas)
-            // console.log( datas.data.responses )
+            console.log( datas.data.responses )
             setCart(datas.data.responses)
 
         } catch (error) {
-            // console.log(error)
+            console.log(error)
             setLoading(false)
             // console.log( error.response.data )
         }finally{

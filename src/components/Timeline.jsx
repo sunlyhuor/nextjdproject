@@ -5,7 +5,7 @@ export default function Timeline( {  datas , color , title } ){
     return(
         <section  data-aos="fade-down-right">
             <section className="mb-[15px]" >
-                <h1 className="text-3xl text-[#462B58] font-bold" >{title}</h1>
+                <h1 className="min-[0px]:text-xl md:text-3xl text-[#462B58] font-bold" >{title}</h1>
                 {/* <h1 className="py-[10px] text-2xl underline font-bold" >{title}</h1> */}
             </section>
             <ol className="relative border-l border-gray-200 dark:border-gray-700">                  
