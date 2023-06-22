@@ -21,6 +21,24 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      keyframes: {
+        scale: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.4)' , border:"2px solid blue" },
+        },
+        spin:{
+          "0%":{
+            transform:"rotate(0deg)"
+          },
+          "100%":{
+            transform:"rotate(360deg)"
+          }
+        }
+      },
+      animation: {
+        scale: 'scale 1s ease-in-out alternate infinite',
+        spin: 'spin 2s ease-in-out infinite',
+      }
     },
   },
 }

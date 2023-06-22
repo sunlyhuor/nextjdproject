@@ -53,9 +53,17 @@ export default function AboutPage(){
     return(
         <main className="min-[0px]:w-11/12 md:w-8/12 mx-auto  mb-[50px]" >
             <section data-aos="fade-down" className="py-[25px]" >
-                <h1 className="text-center text-[#9D38DD] font-bold text-3xl" >Who Am I?</h1>
-                <div className="text-center py-[20px] flex justify-center " >
-                    <Image width={200} height={200} src={MyPic} alt="sdasdhasj" />
+                <h1 className="text-center text-[#9D38DD] font-bold text-3xl z-[10]" >Who Am I?</h1>
+                <div className="w-full" >
+                    <div className="relative h-[40vh]" >
+                            <div className="absolute min-[0px]:left-[30%] md:left-[37%] xl:left-[43%] z-[1] min-[0px]:top-[30px] md:top-[40px] " >
+                                <Image width={200} height={200} src={MyPic} className="rounded-[50%] w-[150px] h-[150px] animate-[scale_2s_ease-in-out_alternate_infinite]" alt ="sdasdhasj" />
+                                <h1 className="text-center mt-[20px] " >Sun LyHuor</h1>
+                            </div>
+                            <div className="border border-blue-600 border-[3px] min-[0px]:left-[20%] min-[0px]:w-[220px] min-[0px]:h-[220px] md:w-[250px] md:h-[250px] xl:w-[300px] xl:h-[300px] absolute md:left-[30%] xl:left-[35%] animate-[spin_4s_ease-in-out_infinite] duration-300 " style={ { borderRadius:"74% 26% 57% 43% / 36% 50% 50% 64%" } } ></div>
+                            <div className="border border-red-600 border-[3px] min-[0px]:left-[20%] min-[0px]:w-[220px] min-[0px]:h-[220px] md:w-[250px] md:h-[250px] xl:w-[300px] xl:h-[300px] absolute md:left-[30%] xl:left-[35%] animate-[spin_3s_ease-in-out_infinite] duration-300 " style={ { borderRadius:"61% 39% 77% 23% / 28% 75% 25% 72% " } } ></div>
+                            <div className="border border-gray-600 border-[3px] min-[0px]:left-[20%] min-[0px]:w-[220px] min-[0px]:h-[220px] md:w-[250px] md:h-[250px] xl:w-[300px] xl:h-[300px] absolute md:left-[30%] xl:left-[35%] animate-[spin_2s_ease-in-out_infinite] duration-300 " style={ { borderRadius:"23% 77% 74% 26% / 49% 36% 64% 51% " } } ></div>
+                    </div>
                 </div>
                 <p className=" break-all px-5" >
                   &nbsp; Hello my name is ស៊ុន លីហួរ (SUN LYHUOR), i'm 20 year old.
@@ -75,8 +83,8 @@ export default function AboutPage(){
                 />
             </section>
             
-            <section data-aos="fade-down" >
-                <h1 className="text-center  font-bold min-[0px]:text-xl md:text-3xl" >FOLLOW US ON</h1>
+            <section data-aos="fade-down" className="py-5" >
+                <h1 className="text-center  font-bold min-[0px]:text-xl md:text-5xl" >FOLLOW US ON</h1>
                 <section className="flex justify-center gap-[20px] py-[10px]" >
                     <a  title="Sun LyHuor - Facebook" href="https://www.facebook.com/sunleehuor/" target="_blank">
                         <FontAwesomeIcon id="svg-inline--fa-title-0kK8mcia4PgJ"  className="text-blue-600 min-[0px]:text-3xl md:text-5xl cursor-pointer hover:opacity-[0.6] active:text-yellow-400" icon={faFacebook} />
@@ -92,7 +100,7 @@ export default function AboutPage(){
                     </a>
                 </section>
             </section>
-            
+
             <section>
                 <h1 className="text-center text-[#9D38DD] font-bold text-3xl" >OTHER SKILLS</h1>
                 <section>
