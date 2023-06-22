@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import {faBurger , faXmark } from "@fortawesome/free-solid-svg-icons"
+import {faArrowUp, faBurger , faXmark } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 import { GenerateNewToken } from "@/components/components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -13,9 +13,18 @@ export default function HeaderComponent(){
     let [ AdminSubMenu , setAdminSubMenu ] = useState(false)
     const router = useRouter()
     let [ Admin , setAdmin ] = useState(false)
+    let [ ToTop , setToTop ] = useState(false)
 
-
+    
     useEffect(()=>{
+
+        window.addEventListener("scroll" , e=>{
+            if( window.scrollY > 300 ){
+                setToTop( true )
+            }else{
+                setToTop(false)
+            }
+        })
 
         if( jsCookie.get( "logined" ) == 'true' ){
             setLogined(true)
@@ -57,7 +66,7 @@ export default function HeaderComponent(){
     } , [ jsCookie.get("access_token") , jsCookie.get("refresh_token") ] )
 
     return(
-        <>
+        <>  
             <header className="relative" >
                 <section className="w-full text-center min-[0px]:mb-[15px] sm:mb-[20px]">
                     <Link href={"/"} className="mx-auto cursor-pointer inline" >
@@ -129,6 +138,21 @@ export default function HeaderComponent(){
                 </div>
 
             </header>
+            {
+                ToTop?(
+                    <button className="fixed bottom-5 right-5 z-[10] flex justify-center items-center"
+                        onClick={()=>{
+                            window.scrollTo({top:0,left:0,behavior:"smooth"})
+                        }} 
+                    >
+                        <div className="w-[50px] h-[50px] p-3 absolute bottom-[-2px] rounded-[50%] border-t-blue-600 border-[5px] animate-spin text-white bg-yellow-500 " ></div>
+                        <FontAwesomeIcon
+                            icon={faArrowUp}
+                            className="bg-blue-400 w-[20px] h-[20px] p-3 z-[1] rounded-[50%] text-white"
+                        />
+                    </button>
+                ):""
+            }
         </>
     ) 
 }

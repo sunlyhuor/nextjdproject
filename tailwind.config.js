@@ -35,11 +35,22 @@ module.exports = {
             transform:"rotate(360deg)",
             // border:"5px"
           }
+        },
+        load:{
+          "0%":{
+            transform:"translateY(0%)",
+            // border:"1px"
+          },
+          "100%":{
+            transform:"translateY(-10%)",
+            // border:"5px"
+          }
         }
       },
       animation: {
         scale: 'scale 1s ease-in-out alternate infinite',
         spin: 'spin 2s ease-in-out infinite',
+        laod: 'load 2s ease-in-out infinite alternate',
       }
     },
   },

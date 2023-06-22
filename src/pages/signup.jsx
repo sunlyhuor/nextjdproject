@@ -99,15 +99,25 @@ export default function SignUpPage(){
             setMessage("Password and Confirm Password must the same!")
         }
         else{
+            let form = new FormData()
+            form.append( "username" , UserName )
+            form.append( "firstname" , FirstName )
+            form.append( "lastname" , LastName )
+            form.append( "password" , Password )
+            form.append( "email" , Email )
+            if( Profile != null || Profile != "" ){
+                form.append( "profile" , Profile )
+            }
+
+            // console.log( Profile )
             try {
                 setLoading(true)
-                const response = await axios.post(BackendLink() + "/api/v1/auth/signupwithoutphoto" , {
-                    username:UserName,
-                    firstname:FirstName,
-                    lastname:LastName,
-                    password:Password,
-                    email:Email
-                } )
+                let response
+                if( Profile == null | Profile == "" ){
+                    response = await axios.post(BackendLink() + "/api/v1/auth/signupwithoutphoto" , form )
+                }else{
+                    response = await axios.post(BackendLink() + "/api/v1/auth/signupwithphoto" , form )
+                }
                 setEmail("")
                 setConfirmPassword("")
                 setFirstName("")
@@ -119,9 +129,9 @@ export default function SignUpPage(){
                 setMessage( response.data.message )
             } catch (error) {
                 console.log( error )
-                // setLoading(true)
-                // setAlert(true)
-                // setMessage( error.response.data.message )
+                setLoading(true)
+                setAlert(true)
+                setMessage( error.response.data.message )
             }
             finally{
                 setLoading(false)
@@ -190,7 +200,7 @@ export default function SignUpPage(){
                                 {/*  */}
                                 <div className="min-[0px]:mb-[15px] md:mb-[20px]" >
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="file_input">Upload profile <span className="text-gray-300 " >(optional)</span> </label>
-                                    <input className="w-full" id="file_input" type="file" value={Profile} />
+                                    <input className="w-full" onChange={e=> setProfile( e.target.files[0] ) } id="file_input" type="file"  />
                                 </div>
                                 {/*  */}
 
@@ -240,7 +250,7 @@ export default function SignUpPage(){
                     </div>
                     <div className="min-[0px]:w-full md:w-6/12 min-[0px]:justify-center  md:justify-left " >
                         <div  >
-                            <Image src={formImage} alt="Form Picture for Sun Lyhuor website." />
+                            <Image src={formImage} alt="Form Picture for Sun Lyhuor website." className="animate-[load_3s_ease-in-out_infinite_alternate]" />
                         </div>
                     </div>
 

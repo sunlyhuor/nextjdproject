@@ -66,7 +66,7 @@ export default function CourseAdminPage(){
 
         FetchingCourses()
 
-    } , [ LoadUpdateCourse , LoadAddCourse ] )
+    } , [ LoadUpdateCourse , LoadAddCourse , UpdateCourseThumbnail ] )
 
     return(
         <main>

@@ -41,41 +41,42 @@ export default function ProfilePage(){
     async function SubmitUpdate(e){
         e.preventDefault()
 
-        if( Firstname == "" || Firstname == null ){
-            setMessage("firstname's required")
-            setAlert(true)
-            // console.log("firstname's required")
-        }else if( Lastname == "" || Lastname == null  ){
-            setMessage("lastname's required")
-            setAlert(true)
-            // console.log("lasrname's required")
-        }else{
+        // if( Firstname == "" || Firstname == null ){
+        //     setMessage("firstname's required")
+        //     setAlert(true)
+        //     // console.log("firstname's required")
+        // }else if( Lastname == "" || Lastname == null  ){
+        //     setMessage("lastname's required")
+        //     setAlert(true)
+        //     // console.log("lasrname's required")
+        // }else{
             // console.log( Firstname )
             try {
-                let form = new FormData()
-                form.append("firstname" , Firstname)
-                form.append("lastname" , Lastname)
-                form.append("phone" , Phone)
+                // let form = new FormData()
+                // form.append("firstname" , (Firstname == null || Firstname == "" ) ? Profile.auth_firstname : Firstname)
+                // form.append("lastname" , (Lastname == null || Lastname == "" ) ? Profile.auth_lastname : Lastname )
+                // form.append("phone" , Phone)
+                // for (const value of form.values()) {
+                //     console.log(value);
+                // }
                 const datas = await axios.put( BackendLink()+"/api/v1/auth/user/update" , {
-                    firstname:Firstname,
-                    lastname:Lastname,
-                    phone:Phone
+                    firstname:(Firstname == null || Firstname == "" ) ? Profile.auth_firstname : Firstname,
+                    lastname:(Lastname == null || Lastname == "" ) ? Profile.auth_lastname : Lastname,
+                    phone:(Phone == null || Phone == "" ) ? Profile.auth_phone : Phone
                 } , {
                     headers:{
                         "access_token":JsCookie.get("access_token")
                     }
                 } )
 
-                // console.log(datas)
                 setMessage(datas.data.message)
                 setAlert(true)
 
             } catch (error) {
+                console.log( error )
                 setMessage(error.response.data.message)
                 setAlert(true)
-                // console.log( error )
             }
-        }
 
     }
 
@@ -108,7 +109,7 @@ export default function ProfilePage(){
                     Loading?(
                         <div className="flex justify-evenly flex-wrap " >
                             <div>
-                                <img className="w-[200px] rounded-[50%] border-[5px] border-blue-600" src={ Profile.auth_photo } alt="" />
+                                <img className="w-[200px] h-[200px] rounded-[50%] border-[5px] border-blue-600" src={ Profile.auth_photo } alt="" />
                             </div>
                             <div>
                                 <h2 className="text-center text-3xl py-[20px] underline "  >Personal Details</h2>

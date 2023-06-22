@@ -171,8 +171,8 @@ export default function SigninPage(){
                         </div>
                     </div>
                     <div className="min-[0px]:w-full md:w-6/12 min-[0px]:justify-center  md:justify-left " >
-                        <div  >
-                            <Image src={ forming } alt="Form Picture for Sun Lyhuor website." />
+                        <div>
+                            <Image src={ forming } alt="Form Picture for Sun Lyhuor website." className="animate-[load_3s_ease-in-out_infinite_alternate]" />
                         </div>
                     </div>
 

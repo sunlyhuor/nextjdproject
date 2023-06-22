@@ -20,6 +20,7 @@ export default function Media( { LoadMedia , setLoadMedia } ){
         } catch (error) {
             setLoading(true)
             console.log(error)
+            setDatas([])
         }finally{
             setLoading(false)
         }
@@ -56,7 +57,7 @@ export default function Media( { LoadMedia , setLoadMedia } ){
                                                 <LoadingComponent />
                                             </div>
                                         ):(
-                                            Datas.length > 0?
+                                            Datas?
                                             (
                                                 Datas.map((d , k)=>{
                                                     return(

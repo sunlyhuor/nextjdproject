@@ -14,8 +14,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export async function getServerSideProps( { query } ){
     try{
-        let lm = isNaN( query.limit ) ? 15 : Number(query.limit)
-        let pg = isNaN( query.page ) ? 1 : Number( query.page ) 
+        let lm = !query.limit ? 15 : Number(query.limit)
+        let pg = !query.page ? 1 : Number( query.page ) 
         const datas = await fetch( `${BackendLink()}/api/v1/course?limit=${lm}&page=${pg}` )
         const datas_json = await datas.json()
         return{
@@ -26,7 +26,9 @@ export async function getServerSideProps( { query } ){
     }catch(e){
         return{
             props:{
-                datas_json:[]
+                datas_json:{
+                    responses:[]
+                }
             }
         }
     }
@@ -58,7 +60,7 @@ export default function CoursePage( { datas_json } ){
     
     useEffect(()=>{
        
-        if( !router.query.limit ){
+        if( !router.query.limit || !router.query.page ){
             router.push("?limit=15&page=1")
         }
 
@@ -84,9 +86,9 @@ export default function CoursePage( { datas_json } ){
                             <LoadingComponent />
                         </div>
                      }>
-                        <section className="flex justify-center flex-wrap gap-[10px]">
-                        {/* <section className="flex min-[0px]:justify-center sm:justify-start flex-wrap gap-[10px]"> */}
-                            {datas_json.responses
+                        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mb-[25px]">
+                        {/* <section className="flex justify-center flex-wrap gap-[10px] mb-[25px]"> */}
+                            {datas_json.responses.length > 0
                                 ? datas_json.responses.map((d, k) => {
                                     return (
                                         <CardComponent
@@ -116,7 +118,7 @@ export default function CoursePage( { datas_json } ){
                                 })
                                 :
                                 (
-                                    <button>No blog</button>
+                                    <button>No course yet!  </button>
                                 )
                             }
                         </section>

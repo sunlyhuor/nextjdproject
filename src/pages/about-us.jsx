@@ -5,6 +5,7 @@ import { faFacebook , faTelegram , faLinkedin, faTiktok } from "@fortawesome/fre
 import ProgresComponent from "@/components/Progres";
 import MyPic from "@/assets/pictures/mypic.jpg"
 import Image from "next/image"
+import Head from "next/head";
 
 export default function AboutPage(){
 
@@ -52,13 +53,16 @@ export default function AboutPage(){
 
     return(
         <main className="min-[0px]:w-11/12 md:w-8/12 mx-auto  mb-[50px]" >
+            <Head>
+                <title>About - us Sun Lyhuor</title>
+            </Head>
             <section data-aos="fade-down" className="py-[25px]" >
                 <h1 className="text-center text-[#9D38DD] font-bold text-3xl z-[10]" >Who Am I?</h1>
                 <div className="w-full" >
                     <div className="relative h-[40vh]" >
-                            <div className="absolute text-center z-[20]  min-[0px]:top-[30px] md:top-[40px]" style={{ left:"50%" , transform: "translate(-50%, 0)" }} >
+                            <div className="absolute text-center z-[20]  min-[0px]:top-[10px] md:top-[20px]" style={{ left:"50%" , transform: "translate(-50%, 0)" }} >
                             {/* <div className="absolute min-[0px]:left-[30%] md:left-[37%] xl:left-[43%] z-[1] min-[0px]:top-[30px] md:top-[40px] " > */}
-                                <Image width={200} height={200} src={MyPic} className="rounded-[50%] w-[150px] h-[150px] animate-[scale_2s_ease-in-out_alternate_infinite]" alt ="sdasdhasj" />
+                                <Image width={200} height={200} src={MyPic} className="w-[120px] h-[150px] animate-[scale_2s_ease-in-out_alternate_infinite]" alt ="sdasdhasj" />
                                 <h1 className="text-center mt-[20px] " >Sun LyHuor</h1>
                                 <button className="text-center bg-yellow-300 text-white rounded px-[10px] py-[3px] cursor-pointer z-[100] mx-auto shadow-lg shadow-yellow-500/50" onClick={()=> alert("Hello")} >GET MY CV</button>
                             </div>

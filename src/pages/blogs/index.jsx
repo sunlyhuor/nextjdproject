@@ -8,8 +8,8 @@ import { faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons"
 
 export async function getServerSideProps( { query } ){
     try{  
-        let lm = isNaN( query.limit ) ? 15 : Number(query.limit)
-        let pg = isNaN( query.page ) || query.page == null ? 1 : Number( query.page ) 
+        let lm = !query.limit ? 15 : Number(query.limit)
+        let pg = !query.page ? 1 : Number( query.page ) 
         const datas = await fetch( BackendLink() + "/api/v1/blog?limit="+Number(lm)+"&page="+pg )
         const datas_json = await datas.json()
         return {
@@ -33,7 +33,7 @@ export default function BlogsPage( {datas_json} ){
     const router = useRouter()
     useEffect(()=>{
 
-        if( !router.query.limit ){
+        if( !router.query.limit || !router.query.page ){
             router.push("?limit=15&page=1")
         }
 
@@ -55,7 +55,7 @@ export default function BlogsPage( {datas_json} ){
                     <span className="min-[0px]:text-sm lg:text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white   " >{router.query.page ? router.query.page : 1 }</span>
                     <button onClick={()=> router.push( `?limit=15&page=${ isNaN( router.query.page ) ? 1 :  datas_json.responses ? Number( router.query.page ) + 1 : Number( router.query.page )  } ` ) } > <FontAwesomeIcon className="min-[0px]:text-sm lg:text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" icon={faAnglesRight} /> </button>
                 </div>
-                <section className="flex justify-center flex-wrap gap-[10px]">
+                <section className={`grid grid-cols-2 md:grid-cols-3 gap-[10px]`}>
                 {/* <section className="flex min-[0px]:justify-center sm:justify-start flex-wrap gap-[10px]"> */}
                     {
                         datas_json.status?(
