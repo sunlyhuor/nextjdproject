@@ -1,7 +1,11 @@
 import { Suspense, useEffect, useState , React } from "react"
 import dynamic from "next/dynamic"
 import LoadingComponent from "@/components/Loading"
-import CardComponent from "@/components/Card"
+const CardComponent = dynamic( ()=> import("@/components/Card") , { loading:()=>(
+    <div className="text-center" >
+        <LoadingComponent />
+    </div>
+) } )
 // const CardComponent = dynamic(()=> import("@/components/Card") , {ssr:true} )
 import axios from "axios"
 import { BackendLink } from "@/components/components"
@@ -60,51 +64,49 @@ export default function CoursePage( { datas_json } ){
                         <span className="min-[0px]:text-sm lg:text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white   " >{router.query.page ? router.query.page : 1 }</span>
                         <button onClick={()=> router.push( `?limit=15&page=${ isNaN( router.query.page ) ? 1 : datas_json.responses.length > 0 ? Number( router.query.page ) + 1 : Number( router.query.page ) }` ) } > <FontAwesomeIcon className="min-[0px]:text-sm lg:text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" icon={faAnglesRight} /> </button>
                     </div>
-                        <Suspense fallback={ ()=> setLoading(true)} >
-                               {
-                                    Loading?(
-                                        <>
-                                            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mb-[25px]">
-                                                {datas_json.responses.length > 0
-                                                    ? datas_json.responses.map((d, k) => {
-                                                        return (
-                                                            <CardComponent
-                                                                buycourses={d.buycourses}
-                                                                button={"learn more"}
-                                                                count={d.buycourses.length}
-                                                                id={d.course_id}
-                                                                key={k}
-                                                                title={d.course_title}
-                                                                price={d.course_price}
-                                                                picture={d.course_thumbnail}
-                                                                link={"/courses/" + d.course_title} 
-                                                                discount={d.course_discount} 
-                                                                date={
-                                                                    new Date(d.course_discount_date)
-                                                                } created={
-                                                                    new Date(d.course_createat)
-                                                                }
-                                                                month={
-                                                                    d.course_month
-                                                                }
-                                                                type={"course"}
-                                                                cart = {true}
-        
-                                                            />
-                                                        );
-                                                    })
-                                                    :
-                                                    (
-                                                        ""
-                                                    )
-                                                }
-                                            </section>
-                                            <h1 className="text-center" >No more</h1>
-                                        </>
-                                    ):(
-                                        <h1>Loading</h1>
-                                    )
-                               } 
+                        <Suspense fallback={ 
+                            <div className="text-center" >
+                                <LoadingComponent />
+                            </div>
+                         } >
+                            <>
+                                <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mb-[25px]">
+                                    {datas_json.responses.length > 0
+                                        ? datas_json.responses.map((d, k) => {
+                                            return (
+                                                <CardComponent
+                                                    buycourses={d.buycourses}
+                                                    button={"learn more"}
+                                                    count={d.buycourses.length}
+                                                    id={d.course_id}
+                                                    key={k}
+                                                    title={d.course_title}
+                                                    price={d.course_price}
+                                                    picture={d.course_thumbnail}
+                                                    link={"/courses/" + d.course_title} 
+                                                    discount={d.course_discount} 
+                                                    date={
+                                                        new Date(d.course_discount_date)
+                                                    } created={
+                                                        new Date(d.course_createat)
+                                                    }
+                                                    month={
+                                                        d.course_month
+                                                    }
+                                                    type={"course"}
+                                                    cart = {true}
+
+                                                />
+                                            );
+                                        })
+                                        :
+                                        (
+                                            ""
+                                        )
+                                    }
+                                </section>
+                                <h1 className="text-center" >No more</h1>
+                            </>
                         </Suspense>
             </main>
         </>
