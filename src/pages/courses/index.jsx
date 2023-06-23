@@ -42,9 +42,7 @@ export default function CoursePage( { datas_json } ){
         if( !router.query.limit || !router.query.page ){
             router.push("?limit=15&page=1")
         }
-
         setLoading(true)
-
     } , [ BuyCourseLoad , datas_json ] )
     
     return(
@@ -67,45 +65,47 @@ export default function CoursePage( { datas_json } ){
                             <div className="text-center" >
                                 <LoadingComponent />
                             </div>
-                        ):""
-                       }
-                        {/* <section className="flex justify-center flex-wrap gap-[10px] mb-[25px]"> */}
-                        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mb-[25px]">
-                            {datas_json.responses.length > 0
-                                ? datas_json.responses.map((d, k) => {
-                                    return (
-                                        <CardComponent
-                                            buycourses={d.buycourses}
-                                            button={"learn more"}
-                                            count={d.buycourses.length}
-                                            id={d.course_id}
-                                            key={k}
-                                            title={d.course_title}
-                                            price={d.course_price}
-                                            picture={d.course_thumbnail}
-                                            link={"/courses/" + d.course_title} 
-                                            discount={d.course_discount} 
-                                            date={
-                                                new Date(d.course_discount_date)
-                                            } created={
-                                                new Date(d.course_createat)
-                                            }
-                                            month={
-                                                d.course_month
-                                            }
-                                            type={"course"}
-                                            cart = {true}
+                        ):(
+                            <>
+                                <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mb-[25px]">
+                                    {datas_json.responses.length > 0
+                                        ? datas_json.responses.map((d, k) => {
+                                            return (
+                                                <CardComponent
+                                                    buycourses={d.buycourses}
+                                                    button={"learn more"}
+                                                    count={d.buycourses.length}
+                                                    id={d.course_id}
+                                                    key={k}
+                                                    title={d.course_title}
+                                                    price={d.course_price}
+                                                    picture={d.course_thumbnail}
+                                                    link={"/courses/" + d.course_title} 
+                                                    discount={d.course_discount} 
+                                                    date={
+                                                        new Date(d.course_discount_date)
+                                                    } created={
+                                                        new Date(d.course_createat)
+                                                    }
+                                                    month={
+                                                        d.course_month
+                                                    }
+                                                    type={"course"}
+                                                    cart = {true}
 
-                                        />
-                                    );
-                                })
-                                :
-                                (
-                                    ""
-                                )
-                            }
-                        </section>
-                        <h1 className="text-center" >No more</h1>
+                                                />
+                                            );
+                                        })
+                                        :
+                                        (
+                                            ""
+                                        )
+                                    }
+                                </section>
+                                <h1 className="text-center" >No more</h1>
+                            </> 
+                        )
+                    }
                    
             </main>
         </>
