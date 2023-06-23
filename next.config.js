@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images:{
-    domains:[ "localhost" ]
+    domains:[ "localhost" , "school-ms-backend.onrender.com" ]
     // "localhost" , "https://school-ms-backend.onrender.com/"
     // remotePatterns: [
     //   {

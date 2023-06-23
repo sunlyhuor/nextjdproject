@@ -64,11 +64,11 @@ export default function CoursePage( { datas_json } ){
                         <span className="min-[0px]:text-sm lg:text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white   " >{router.query.page ? router.query.page : 1 }</span>
                         <button onClick={()=> router.push( `?limit=15&page=${ isNaN( router.query.page ) ? 1 : datas_json.responses.length > 0 ? Number( router.query.page ) + 1 : Number( router.query.page ) }` ) } > <FontAwesomeIcon className="min-[0px]:text-sm lg:text-xl inline-flex items-center px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" icon={faAnglesRight} /> </button>
                     </div>
-                        <Suspense fallback={ 
+                        {/* <Suspense fallback={ 
                             <div className="text-center" >
                                 <LoadingComponent />
                             </div>
-                         } >
+                         } > */}
                             <>
                                 <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mb-[25px]">
                                     {datas_json.responses.length > 0
@@ -107,7 +107,7 @@ export default function CoursePage( { datas_json } ){
                                 </section>
                                 <h1 className="text-center" >No more</h1>
                             </>
-                        </Suspense>
+                        {/* </Suspense> */}
             </main>
         </>
     )
