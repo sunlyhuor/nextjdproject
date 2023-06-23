@@ -24,7 +24,7 @@ export default function CartAdminPage(){
     async function FetchingCart(){
         try {
             setLoading(true)
-            const datas = await axios.get( BackendLink() + "/api/v1/buycourse" , {
+            const datas = await axios.get( BackendLink() + "/api/v1/buycourse/" , {
                 headers:{
                     "access_token":JsCookie.get("access_token")
                 }
