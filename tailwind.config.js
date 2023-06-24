@@ -59,12 +59,25 @@ module.exports = {
             transform:"scale(1.4)"
           }
         },
+        logocolor:{
+          "0%":{
+            color:"red",
+            content:"asjdhsd"
+          },
+          "50%":{
+            color:"blue"
+          },
+          "100%":{
+            color:"green"
+          }
+        }
       },
       animation: {
         scale: 'scale 1s ease-in-out alternate infinite',
         spin: 'spin 2s ease-in-out infinite',
         laod: 'load 2s ease-in-out infinite alternate',
         color: 'color 4s ease-in-out infinite alternate',
+        logocolor: 'logocolor 4s ease-in-out infinite alternate',
       }
     },
   },

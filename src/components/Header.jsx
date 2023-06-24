@@ -69,9 +69,12 @@ export default function HeaderComponent(){
         <>  
             <header className="relative" >
                 <section className="w-full text-center min-[0px]:mb-[15px] sm:mb-[20px]">
-                    <Link href={"/"} className="mx-auto cursor-pointer inline" >
-                        <h1 className="inline" >Huor សដស</h1>
-                    </Link>
+                    {/* <Link href={"/"} className="mx-auto cursor-pointer inline" > */}
+                    <h1 className="w-[120px] cursor-pointer mx-auto text-xl font-bold flex gap-[5px] justify-center hover:underline transition hover:duration-300 ease ">
+                            <span className="animate-[logocolor_3s_ease-in-out_infinite_alternate]" >Huor</span>
+                            <span className="animate-[logocolor_5s_ease-in-out_infinite_alternate]" >Class</span>
+                    </h1>
+                    {/* </Link> */}
                         {/* <Image onClick={()=> router.push("/") } className="mx-auto cursor-pointer min-[0px]:w-[60px] md:w-[100px] " src={LogoHuorClass}  width={2000} height={2000} alt="Sun LyHuor Logo" /> */}
                 </section>
 
@@ -114,7 +117,7 @@ export default function HeaderComponent(){
                             {
                                 ( Logined )?(
                                     <>
-                                        <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/carts" ? "bg-gray-100 rounded" : "" }` } href="/carts" >Carts</Link></li>
+                                        <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/carts" ? "bg-gray-100 rounded" : "" }` } href="/carts" >Shopping Cart</Link></li>
                                         <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/profile" ? "bg-gray-100 rounded" : "" }` } href="/profile" >Profile</Link></li>
                                     </>
                                 ):(
