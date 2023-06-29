@@ -1,35 +1,15 @@
-import CardComponent from "@/components/Card"
 import CarouselComponent from "@/components/carousel"
-import { BackendLink } from "@/components/components"
-import axios from "axios"
 import Head from "next/head"
-import Link from "next/link"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFireFlameCurved } from "@fortawesome/free-solid-svg-icons"
 
 export default function HomePage(){
-    let [ PopularCourses , setPopularCourses ] = useState([])
-    let [ LoadingPopular , setLoadingPopular ] = useState(false)
+    
+    const router = useRouter()
 
-    async function getPopularCourse(){
-        try {
-            setLoadingPopular(false)
-            const datas = await axios.get( BackendLink() + "/api/v1/course/popular/10/" )
-            // console.log(datas)
-            setPopularCourses( datas.data.responses )
-        } catch (error) {
-            setLoadingPopular(false)
-            console.log( error )
-        }
-        finally{
-            setLoadingPopular(true)
-        }
-    }
-
-    useEffect(()=>{
-
-        getPopularCourse()
-
-    } , [] )
+   
 
     return(
         <main>
@@ -42,18 +22,8 @@ export default function HomePage(){
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
             <section className="w-10/12 mx-auto p-1 " >
-                <h1 className="font-bold bg-red-600 mb-[10px] inline cursor-pointer text-white px-[10px] py-[5px] rounded-tr-[5px] shadow-lg shadow-[red]" >Popular</h1>
-                <section>
-                    {
-                    LoadingPopular?(
-                                <CarouselComponent datas={PopularCourses} />
-                            )
-                            :(
-                                <h1 className="text-center" >No items</h1>
-                            )
-                    }
-                </section>
-
+                <h1 className="font-bold bg-red-600 mb-[10px] inline cursor-pointer text-white px-[10px] py-[5px] rounded-tr-[5px] shadow-lg shadow-[red] hover:shadow-[yellow] hover:opacity-[0.9] transition duration-300" >Popular <FontAwesomeIcon className="" icon={faFireFlameCurved} /> </h1>
+                {/* <CarouselComponent /> */}
 
             </section>
 

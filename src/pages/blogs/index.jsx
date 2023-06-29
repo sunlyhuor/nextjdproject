@@ -79,7 +79,7 @@ export default function BlogsPage( {datas_json} ){
                                             <CardComponent
                                                 key={k}
                                                 picture={d.blog_thumbnail} 
-                                                link={"blogs/"+d.blog_title}
+                                                link={"blogs/"+d.blog_code}
                                                 title={d.blog_title}
                                                 created={ new Date(d.blog_createat) }
                                                 button={"Read more"}

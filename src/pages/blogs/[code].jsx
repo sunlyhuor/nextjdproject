@@ -8,8 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export async function getServerSideProps( { params } ){
     try{
-        const { title } = params
-        const datas = await fetch(BackendLink()+"/api/v1/blog/"+title)
+        const { code } = params
+        const datas = await fetch(BackendLink()+"/api/v1/blog/"+code)
         const datas_json = await datas.json()
         return{
             props:{
@@ -27,7 +27,7 @@ export async function getServerSideProps( { params } ){
     }
 }
 
-export default function SignleBlog( {datas_json  } ){
+export default function SignleBlog( { datas_json  } ){
     const  weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
     let [ Blogs , setBlogs ] = useState([])
     async function getLimitBlog(){

@@ -1,9 +1,9 @@
 import Link from "next/link"
 
-export default function Timeline( {  datas , color , title } ){
+export default function Timeline( {  datas , color , title , id } ){
     return(
-        <section  data-aos="fade-down-right">
-            <section className="mb-[15px]" >
+        <section data-aos="fade-down-right">
+            <section id={id} className="mb-[15px]" >
                 <h1 className="min-[0px]:text-xl md:text-3xl text-[#462B58] font-bold" >{title}</h1>
                 {/* <h1 className="py-[10px] text-2xl underline font-bold" >{title}</h1> */}
             </section>

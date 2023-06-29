@@ -5,6 +5,8 @@ import { GenerateNewToken } from "@/components/components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import jsCookie from "js-cookie"
 import { useRouter } from "next/router"
+import LogoHuorClass from "@/assets/logo/huorclass_logo.png"
+import Image from "next/image"
 
 export default function HeaderComponent(){
     let [ Hamberger , setHamberger ] = useState(false)
@@ -70,12 +72,12 @@ export default function HeaderComponent(){
             <header className="relative" >
                 <section className="w-full text-center min-[0px]:mb-[15px] sm:mb-[20px]">
                     {/* <Link href={"/"} className="mx-auto cursor-pointer inline" > */}
-                    <h1 className="w-[120px] cursor-pointer mx-auto text-xl font-bold flex gap-[5px] justify-center hover:underline transition hover:duration-300 ease ">
+                    {/* <h1 className="w-[120px] cursor-pointer mx-auto text-xl font-bold flex gap-[5px] justify-center hover:underline transition hover:duration-300 ease ">
                             <span className="animate-[logocolor_3s_ease-in-out_infinite_alternate]" >Huor</span>
                             <span className="animate-[logocolor_5s_ease-in-out_infinite_alternate]" >Class</span>
-                    </h1>
+                    </h1> */}
                     {/* </Link> */}
-                        {/* <Image onClick={()=> router.push("/") } className="mx-auto cursor-pointer min-[0px]:w-[60px] md:w-[100px] " src={LogoHuorClass}  width={2000} height={2000} alt="Sun LyHuor Logo" /> */}
+                        <Image onClick={()=> router.push("/") } className="mx-auto cursor-pointer rounded-[50%] my-[5px] min-[0px]:w-[70px] md:w-[70px] " src={LogoHuorClass}  width={2000} height={2000} alt="Sun LyHuor Logo" />
                 </section>
 
                 <div>

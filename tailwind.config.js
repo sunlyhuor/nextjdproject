@@ -23,8 +23,8 @@ module.exports = {
       },
       keyframes: {
         scale: {
-          '0%': { transform: 'scale(1)' },
-          '100%': { transform: 'scale(1.4)' , border:"2px solid blue" },
+          '0%': { transform: 'translateY(0px)' },
+          '100%': { transform: 'translateY(15px)' },
         },
         spin:{
           "0%":{

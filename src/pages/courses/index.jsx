@@ -83,7 +83,7 @@ export default function CoursePage( { datas_json } ){
                                                     title={d.course_title}
                                                     price={d.course_price}
                                                     picture={d.course_thumbnail}
-                                                    link={"/courses/" + d.course_title} 
+                                                    link={"/courses/" + d.course_code} 
                                                     discount={d.course_discount} 
                                                     date={
                                                         new Date(d.course_discount_date)

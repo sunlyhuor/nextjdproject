@@ -13,7 +13,7 @@ import Head from "next/head"
 
 export async function getServerSideProps( { params } ){
     try{
-        const datas = await fetch( BackendLink() + "/api/v1/course/"+params.title  )
+        const datas = await fetch( BackendLink() + "/api/v1/course/"+params.code  )
         const datas_json = await datas.json()
         return{
             props:{
