@@ -28,6 +28,8 @@ export default function HeaderComponent(){
             }
         })
 
+        // console.log( "Cookie : " + jsCookie.get("logined") )
+
         if( jsCookie.get( "logined" ) == 'true' ){
             setLogined(true)
             if( jsCookie.get("access_token") == "" || jsCookie.get("access_token") == undefined ){

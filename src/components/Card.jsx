@@ -126,7 +126,7 @@ export default function CardComponent({ buycourses , id , title , picture , link
                                             ( CheckBuy( JsCookie.get("code") , buycourses ) )?(
                                                 ( getExpireDate( JsCookie.get("code") , buycourses ) )?(
                                                     ( getStatus( JsCookie.get("code") , buycourses , "completed" ) )?(
-                                                        <Link href={"/courses/"+title}>
+                                                        <Link href={link}>
                                                             <button className={" bg-green-600 py-[3px] lg:text-sm hover:opacity-[0.6] active:bg-blue-600 text-white px-[15px] rounded mt-[10px] "} ><span className="flex items-center gap-[5px]" > <FontAwesomeIcon icon={faEye} /> Watching Now</span><i></i></button>
                                                         </Link>
                                                     ):(

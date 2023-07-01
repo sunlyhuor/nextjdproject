@@ -134,12 +134,14 @@ export default function SigninPage(){
                             </div>
 
                             <div className="flex flex-col gap-[10px] min-[0px]:mb-[20px] sm:mb-[40px]" >
+                                <Link href={BackendLink()+"/api/v1/auth/google"} >
                                     <button className="border rounded-[15px] min-[0px]:p-1 sm:p-2 hover:bg-gray-100 hover:duration-300 transition " >
                                         <div className="flex items-center w-7/12 mx-auto min-[0px]:gap-[15px] sm:gap-[10px] justify-center " >
                                             <Image className="sm:w-10 sm:h-10 min-[0px]:h-5 min-[0px]:w-5 md:w-7 md:h-7 rounded-full" src={googleicon} alt="" />
                                             <span className="md:text-[12px] lg:text-base min-[0px]:text-xs" >Login With Google&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         </div>
                                     </button>
+                                </Link>
                                 <button className="border rounded-[15px] min-[0px]:p-1 sm:p-2 hover:bg-gray-100 hover:duration-300 transition" >
                                     <div className="flex items-center w-7/12 mx-auto min-[0px]:gap-[15px] sm:gap-[10px] justify-center" >
                                         <Image className="sm:w-10 sm:h-10 min-[0px]:h-5 min-[0px]:w-5 md:w-7 md:h-7 rounded-full" src={fbIcon} alt="" />
