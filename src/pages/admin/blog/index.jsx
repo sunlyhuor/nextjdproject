@@ -18,7 +18,7 @@ export default function AdminBlog() {
 
     async function getAllBLog(){
         try {
-            const datas = await axios.get( BackendLink() + "/api/v1/blog/admin/blog/" , {
+            const datas = await axios.get( BackendLink() + "/api/v1/blog/admin/blog" , {
                 headers:{
                     "access_token":JsCookie.get("access_token")
                 }

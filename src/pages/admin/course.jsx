@@ -14,6 +14,7 @@ import Head from 'next/head'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons'
 import UpdateCourseThumbnail from '@/components/admin/components/UpdateCourseThumbnail'
+import AlertComponent from '@/components/Alert'
 
 
 export default function CourseAdminPage(){
@@ -33,6 +34,10 @@ export default function CourseAdminPage(){
     let [ LoadAddCourse , setLoadAddCourse ] = useState(false)
     let [ LoadUpdateCourseThumbnail , setLoadUpdateCourseThumbnail ] = useState(false)
     // let [ CourseId , setCourseId ] = useState(null)
+    let [ Message , setMessage ] = useState("")
+    let [ Alert , setAlert ] = useState("")
+    // let [] = useState("")
+    // let [] = useState("")
 
 
     async function FetchingCourses(){
@@ -51,6 +56,34 @@ export default function CourseAdminPage(){
         }
         finally{
             setLoading(true)
+        }
+    }
+
+    async function DeleteCourse(id){
+        let cm = confirm("Are you sure")
+        if( cm ){
+
+            try{
+                const datas = await axios.delete( BackendLink() + "/api/v1/course/delete",
+                    {
+                        headers:{
+                            "access_token":JsCookie.get("access_token")
+                        },
+                        data:{
+                            course:id
+                        }
+                    }
+                )
+                setMessage( datas.data.message )
+                setAlert(true)
+                FetchingCourses()
+                console.log( datas )
+            }catch(e){
+                setMessage( e.response.data.message )
+                setAlert(true)
+                console.log(e)
+            }
+
         }
     }
 
@@ -73,6 +106,12 @@ export default function CourseAdminPage(){
             <Head>
                 <title>Admin Courses Page - Sun LyHuor</title>
             </Head>
+
+            <AlertComponent 
+                message={Message}
+                alert={Alert}
+                changeAlert={()=> setAlert( !Alert ) }
+            />
 
             <UpdateCourseThumbnail 
                 LoadUpdateCourseThumbnail={LoadUpdateCourseThumbnail}
@@ -135,18 +174,27 @@ export default function CourseAdminPage(){
                                                     <p className='p-1'>Count : { d.buycourses.length }</p>
                                                     {/* <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{ d.course_description }</p> */}
                                                     <button onClick={()=> {
-                                                        setCourseId( d.course_id )
-                                                        setTitle( d.course_title )
-                                                        setDescription( d.course_description )
-                                                        setDiscount( d.course_discount )
-                                                        setDiscountDate( d.course_discount_date )
-                                                        setPrice( d.course_price )
-                                                        setMonth( d.course_month )
-                                                        setStatus( d.status.status_id )
-                                                        setLoadUpdateCourse(true)
-                                                    } } className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                        Update
+                                                            setCourseId( d.course_id )
+                                                            setTitle( d.course_title )
+                                                            setDescription( d.course_description )
+                                                            setDiscount( d.course_discount )
+                                                            setDiscountDate( d.course_discount_date )
+                                                            setPrice( d.course_price )
+                                                            setMonth( d.course_month )
+                                                            setStatus( d.status.status_id )
+                                                            setLoadUpdateCourse(true)
+                                                        } } className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                            Update
                                                     </button>
+                                                    {
+                                                        (d.buycourses.length < 1)?(
+                                                                <button
+                                                                    onClick={()=> DeleteCourse(d.course_id) }
+                                                                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" >
+                                                                    Delete
+                                                                </button>
+                                                        ):""
+                                                    }
                                                 </div>
                                           </div>
                                     </div>

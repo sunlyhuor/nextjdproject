@@ -55,14 +55,14 @@ export default function AdminPostBlog() {
                     }
                 }
                 )
-                setAlert(true)
                 setMessage( datas.data.message )
+                setAlert(true)
                 // console.log(datas)
 
             } catch (error) {
                 console.log(error)
-                setAlert(true)
                 setMessage( error.response.data.message )
+                setAlert(true)
             }
         }
 

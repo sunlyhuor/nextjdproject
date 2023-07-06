@@ -79,6 +79,7 @@ export default function AddCourseAdminComponent( { LoadAddCourse , setLoadAddCou
                         }
                     }
                 )
+                console.log(datas)
                 setMessage( datas.data.message )
                 setAlert(true)
 
@@ -94,9 +95,9 @@ export default function AddCourseAdminComponent( { LoadAddCourse , setLoadAddCou
 
     useEffect(()=>{
 
-        if( LoadAddCourse == true ){
+        // if( LoadAddCourse == true ){
             FetchingStatus()
-        }
+        // }
 
     } , [ LoadAddCourse  ] )
 

@@ -20,6 +20,7 @@ export default function SigninPage(){
     let [Message , setMessage] = useState(null)
     let [ Email , setEmail ] = useState(null)
     let [Password , setPassword] = useState("")
+    let [ checkVerify , setCheckVerify ] = useState(false)
     const navigate = useRouter()
 
 
@@ -54,31 +55,32 @@ export default function SigninPage(){
                 const data = await axios.post(BackendLink() + "/api/v1/auth/signin" , {
                     email:Email,
                     password:Password
-                })
-                JsCookie.set("logined" , true , {
-                    expires:1
-                })
-                JsCookie.set("code" , data.data.code , {
-                    expires:1
-                })  
-                // console.log( data.data.message )
-                // if( data.data.role.toLowerCase() == "admin" ){  
-                //     JsCookie.set("isAdmin" , true)
-                // }
-                setAlert(true)
-                JsCookie.set( "access_token" , data.data.token , {
-                    expires:1,
-                })
-                JsCookie.set( "refresh_token" , data.data.refresh_token ,{
-                    expires:1
-                } )
-                setMessage( data.data.message )
+                },
+                {
+                    withCredentials:true
+                }
+                )
+                // console.log(data)
+                // JsCookie.set("logined" , true , {
+                //     expires:1
+                // })
+                // JsCookie.set("code" , data.data.code , {
+                //     expires:1
+                // })  
+                // setAlert(true)
+                // JsCookie.set( "access_token" , data.data.token , {
+                //     expires:1,
+                // })
+                // JsCookie.set( "refresh_token" , data.data.refresh_token ,{
+                //     expires:1
+                // } )
+                // setMessage( data.data.message )
                 navigate.replace("/")
             } catch (error) {
                 // alert(error.toString())
-                console.error(error)
-                // JsCookie.set("logined" , false)
+                // console.error(error.response.data.verify)
                 setLoading(true)
+                setCheckVerify(true)
                 setAlert(true)
                 setMessage( error.response.data.message )
             }
@@ -124,7 +126,14 @@ export default function SigninPage(){
                                         <input onChange={ handleInputPassword } onKeyDown={ handleEnter } type="password" name="floating_password" id="floating_password" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                         <label htmlFor="floating_password" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
                                     </div>
-                                </div>  
+                                </div>      
+                                <div>
+                                    {
+                                        checkVerify?(
+                                            <Link className="text-sm text-blue-600 hover:underline" href={"request/verify"} >Verify</Link>
+                                        ):""
+                                    }
+                                </div>
 
                             </form>
 
@@ -134,14 +143,14 @@ export default function SigninPage(){
                             </div>
 
                             <div className="flex flex-col gap-[10px] min-[0px]:mb-[20px] sm:mb-[40px]" >
-                                <Link href={BackendLink()+"/api/v1/auth/google"} >
+                                {/* <Link href={BackendLink()+"/api/v1/auth/google"} > */}
                                     <button className="border rounded-[15px] min-[0px]:p-1 sm:p-2 hover:bg-gray-100 hover:duration-300 transition " >
                                         <div className="flex items-center w-7/12 mx-auto min-[0px]:gap-[15px] sm:gap-[10px] justify-center " >
                                             <Image className="sm:w-10 sm:h-10 min-[0px]:h-5 min-[0px]:w-5 md:w-7 md:h-7 rounded-full" src={googleicon} alt="" />
                                             <span className="md:text-[12px] lg:text-base min-[0px]:text-xs" >Login With Google&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         </div>
                                     </button>
-                                </Link>
+                                {/* </Link> */}
                                 <button className="border rounded-[15px] min-[0px]:p-1 sm:p-2 hover:bg-gray-100 hover:duration-300 transition" >
                                     <div className="flex items-center w-7/12 mx-auto min-[0px]:gap-[15px] sm:gap-[10px] justify-center" >
                                         <Image className="sm:w-10 sm:h-10 min-[0px]:h-5 min-[0px]:w-5 md:w-7 md:h-7 rounded-full" src={fbIcon} alt="" />

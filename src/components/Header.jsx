@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import {faArrowUp, faBurger , faXmark } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
-import { GenerateNewToken } from "@/components/components"
+import { BackendLink, GenerateNewToken } from "@/components/components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import jsCookie from "js-cookie"
 import { useRouter } from "next/router"
 import LogoHuorClass from "@/assets/logo/huorclass_logo.png"
 import Image from "next/image"
+import axios from "axios"
 
 export default function HeaderComponent(){
     let [ Hamberger , setHamberger ] = useState(false)
@@ -16,6 +17,20 @@ export default function HeaderComponent(){
     const router = useRouter()
     let [ Admin , setAdmin ] = useState(false)
     let [ ToTop , setToTop ] = useState(false)
+    
+    async function Signout(){
+        try {
+                
+            await axios.post( BackendLink()+"/api/v1/auth/signout" , {} , {
+                withCredentials:true
+            } )
+            
+            // console.log(datas)
+            router.push("/signout")
+        } catch (error) {
+            console.log( error )
+        }
+    }
 
     
     useEffect(()=>{
@@ -131,7 +146,7 @@ export default function HeaderComponent(){
                             <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${ router.asPath == "/about-us" ? "bg-gray-100 rounded" : "" }` } href="/about-us" >About us</Link></li>
                             {
                                 ( Logined )?(   
-                                   <li> <Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white` } href={"/signout"} >Log Out</Link> </li>
+                                   <li onClick={()=> Signout() } className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white` }>Log Out </li>
                                 ):(
                                     <>
                                         <li><Link className={ `block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white `} href="/signup">Sign Up</Link></li>

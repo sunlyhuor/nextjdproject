@@ -100,22 +100,24 @@ export default function SignUpPage(){
         }
         else{
             let form = new FormData()
-            form.append( "username" , UserName )
-            form.append( "firstname" , FirstName )
-            form.append( "lastname" , LastName )
-            form.append( "password" , Password )
-            form.append( "email" , Email )
-            if( Profile != null || Profile != "" ){
-                form.append( "profile" , Profile )
-            }
-
-            // console.log( Profile )
             try {
                 setLoading(true)
                 let response
-                if( Profile == null | Profile == "" ){
-                    response = await axios.post(BackendLink() + "/api/v1/auth/signupwithoutphoto" , form )
+                if( !Profile ){
+                    response = await axios.post(BackendLink() + "/api/v1/auth/signupwithoutphoto" , {
+                        username:UserName,
+                        lastname:LastName,
+                        firstname:FirstName,
+                        email:Email,
+                        password:Password
+                    } )
                 }else{
+                    form.append( "username" , UserName )
+                    form.append( "firstname" , FirstName )
+                    form.append( "lastname" , LastName )
+                    form.append( "password" , Password )
+                    form.append( "email" , Email )
+                    form.append( "profile" , Profile )
                     response = await axios.post(BackendLink() + "/api/v1/auth/signupwithphoto" , form )
                 }
                 setEmail("")
@@ -212,7 +214,7 @@ export default function SignUpPage(){
                             </div>
 
                             <div className="flex flex-col gap-[10px] min-[0px]:mb-[20px] sm:mb-[40px]" >
-                                <div>
+                                {/* <div>
                                     {
                                         router.query.message?(
                                             <h1 className="text-center" >
@@ -222,14 +224,14 @@ export default function SignUpPage(){
                                             ""
                                         )
                                     }
-                                </div>
+                                </div> */}
                                 {/*  */}
-                                <Link className="border rounded-[15px] min-[0px]:p-1 sm:p-2 hover:bg-gray-100 hover:duration-300 transition " href={BackendLink()+"/api/v1/auth/google"} >
+                                <button className="border rounded-[15px] min-[0px]:p-1 sm:p-2 hover:bg-gray-100 hover:duration-300 transition" >
                                         <div className="flex items-center w-7/12 mx-auto min-[0px]:gap-[15px] sm:gap-[10px] justify-center " >
                                             <Image className="sm:w-10 sm:h-10 min-[0px]:h-5 min-[0px]:w-5 md:w-7 md:h-7 rounded-full" src={googleicon} alt="" />
                                             <span className="md:text-[12px] lg:text-base min-[0px]:text-xs" >Register With Google&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         </div>
-                                </Link>
+                                </button>
                                 {/*  */}
                                 <button className="border rounded-[15px] min-[0px]:p-1 sm:p-2 hover:bg-gray-100 hover:duration-300 transition" >
                                     <div className="flex items-center w-7/12 mx-auto min-[0px]:gap-[15px] sm:gap-[10px] justify-center" >
