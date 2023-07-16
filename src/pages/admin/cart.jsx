@@ -24,11 +24,13 @@ export default function CartAdminPage(){
     async function FetchingCart(){
         try {
             setLoading(true)
-            const datas = await axios.get( BackendLink() + "/api/v1/buycourse" , {
-                headers:{
-                    "access_token":JsCookie.get("access_token")
+            // const datas = await axios.get( BackendLink() + "/api/v1/buycourse" )
+            const datas = await axios.get(  BackendLink() + "/api/v1/buycourse" , {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'access_token':JsCookie.get("access_token")
                 }
-            } ) 
+              }) 
             console.log( datas.data.responses )
             setCarts( datas.data.responses )
 
@@ -95,6 +97,29 @@ export default function CartAdminPage(){
         }
     }
 
+    async function DeleteBuyCourse(){
+      try {
+        const cm = confirm("Please")
+        if( cm ){
+            const datas = await axios.delete( BackendLink() + "/api/v1/buycourse/delete" , {
+                data:{
+                    id:buy_id
+                },
+                headers:{
+                    "access_token":JsCookie.get("access_token")
+                }
+            } )
+            setMessage( datas.data.message )
+            setAlert(true)            
+        }
+      } catch (error) {
+        setMessage(error.response.data.message)
+        setAlert(true)
+        // console.log(error)
+      }
+    }
+    
+
     useEffect(()=>{
 
         if( JsCookie.get("isAdmin") != "true" ){
@@ -103,7 +128,7 @@ export default function CartAdminPage(){
 
         FetchingCart()
 
-    } , [ Dailog ] )
+    } , [ Dailog, Alert ] )
     
     return(
         <main >
@@ -265,6 +290,11 @@ export default function CartAdminPage(){
                                                         set_status_id(3)
                                                         setDailog(true)
                                                     } } className='bg-blue-600 text-white px-[10px] py-[5px] rounded ' >Wrong TID</button>
+                                                    <button onClick={()=> {
+                                                        set_buy_id( d.buy_course_id )
+                                                        // set_status_id(3)
+                                                        DeleteBuyCourse()
+                                                    } } className='bg-blue-600 text-white px-[10px] py-[5px] rounded ' >Delete</button>
                                                 </td>
                                             </tr>
                                         ))

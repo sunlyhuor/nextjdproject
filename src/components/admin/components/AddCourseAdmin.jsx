@@ -79,7 +79,7 @@ export default function AddCourseAdminComponent( { LoadAddCourse , setLoadAddCou
                         }
                     }
                 )
-                console.log(datas)
+                // console.log(datas)
                 setMessage( datas.data.message )
                 setAlert(true)
 
@@ -99,7 +99,7 @@ export default function AddCourseAdminComponent( { LoadAddCourse , setLoadAddCou
             FetchingStatus()
         // }
 
-    } , [ LoadAddCourse  ] )
+    } , [] )
 
     return(
         <main>

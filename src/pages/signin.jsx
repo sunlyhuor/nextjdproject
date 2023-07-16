@@ -60,7 +60,7 @@ export default function SigninPage(){
                     withCredentials:true
                 }
                 )
-                // console.log(data)
+                console.log(data)
                 // JsCookie.set("logined" , true , {
                 //     expires:1
                 // })
@@ -77,6 +77,7 @@ export default function SigninPage(){
                 // setMessage( data.data.message )
                 navigate.replace("/")
             } catch (error) {
+                console.log(error)
                 // alert(error.toString())
                 // console.error(error.response.data.verify)
                 setLoading(true)

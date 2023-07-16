@@ -33,5 +33,5 @@ RUN npm run build
 EXPOSE 3001
 
 # Start the Next.js application
-# CMD npm run dev -- -p 3001
-CMD npm run start
+CMD npm run dev -- -p 3001
+# CMD npm run dev

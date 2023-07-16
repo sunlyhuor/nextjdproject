@@ -6,10 +6,11 @@ export function validateEmail(email) {
 
 export function BackendLink(){
     // return "http://172.20.10.3:3000"
-    // return "http://192.168.1.13:3000"
-    return "http://localhost:3000"
+    return "http://192.168.1.13:3000"
+    // return "http://localhost:3000"
     // return "https://school-ms-backend.onrender.com"
-    // return "http://192.168.0.106:3000"
+    // return "http://192.168.0.108:3000"
+    // return "http://192.168.50.106:3000"
 }
 
 export async function GenerateNewToken(refresh){

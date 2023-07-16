@@ -24,7 +24,7 @@ export default function HeaderComponent(){
             await axios.post( BackendLink()+"/api/v1/auth/signout" , {} , {
                 withCredentials:true
             } )
-            
+            setAdmin(false)
             // console.log(datas)
             router.push("/signout")
         } catch (error) {
@@ -32,6 +32,7 @@ export default function HeaderComponent(){
         }
     }
 
+        
     
     useEffect(()=>{
 
@@ -42,7 +43,6 @@ export default function HeaderComponent(){
                 setToTop(false)
             }
         })
-
         // console.log( "Cookie : " + jsCookie.get("logined") )
 
         if( jsCookie.get( "logined" ) == 'true' ){
@@ -60,11 +60,11 @@ export default function HeaderComponent(){
                 router.push("/signout")
             }
 
-            setInterval(()=>{
-                console.log("New Generate")
-    
+            const rf =  setInterval(()=>{
+                
                 GenerateNewToken( jsCookie.get("refresh_token") )
-                    .then((d)=>{
+                .then((d)=>{
+                        console.log("New Generate")
                         jsCookie.set("access_token" , d.access_token , { expires:1 }  )
                         // console.log("genterate")
                     }).catch(e=>{
@@ -72,13 +72,16 @@ export default function HeaderComponent(){
                         router.push("/signout")
                     })            
     
+            // } , (1000 * 6) )
             } , ( 1000 * 60 ) * 5 )
+
+            jsCookie.get("isAdmin") == "true" ? setAdmin(true)  : setAdmin(false)
+            return ()=>  clearInterval( rf )
 
         }else{
             setLogined(false)
         }
 
-        jsCookie.get("isAdmin") == "true" ? setAdmin(true)  : setAdmin(false)
         
     // } , (1000 * 60) * 5 )
 

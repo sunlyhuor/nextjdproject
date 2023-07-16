@@ -150,7 +150,7 @@ export default function CourseAdminPage(){
             <section className='w-11/12 m-auto flex justify-center flex-wrap gap-[20px] ' >
                 {
                     Loading?(
-                        Courses.map((d,k)=>{
+                        Courses.length > 0?Courses.map((d,k)=>{
                             return(
                                     <div key={k} className="max-w-sm bg-white border border-gray-200 rounded-lg min-[0px]:w-11/12 sm:w-5/12 lg:w-4/12 xl:w-3/12 shadow dark:bg-gray-800 dark:border-gray-700">
                                           <div>
@@ -199,7 +199,9 @@ export default function CourseAdminPage(){
                                           </div>
                                     </div>
                             )
-                        })
+                        }):(
+                            <h1>No course</h1>
+                        )
                     ):(
                         <div className='text-center' >
                             <LoadingComponent />
