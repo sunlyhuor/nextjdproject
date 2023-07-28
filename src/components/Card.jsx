@@ -118,35 +118,14 @@ export default function CardComponent({ buycourses , id , title , picture , link
                             </Link>
                             <>
                             {
-                                ( type == "course" )?
-                                    Logined ? (
-                                        ( buycourses.length < 1 )?(
+                                type == "course"?(
+                                    Logined ?(
                                             <button className={"button mt-[10px] "} onClick={()=> setBuyCourseLoad(true) } ><span>ADD TO CART</span><i></i></button>
-                                        ):(
-                                            ( CheckBuy( JsCookie.get("code") , buycourses ) )?(
-                                                ( getExpireDate( JsCookie.get("code") , buycourses ) )?(
-                                                    ( getStatus( JsCookie.get("code") , buycourses , "completed" ) )?(
-                                                        <Link href={link}>
-                                                            <button className={" bg-green-600 py-[3px] lg:text-sm hover:opacity-[0.6] active:bg-blue-600 text-white px-[15px] rounded mt-[10px] "} ><span className="flex items-center gap-[5px]" > <FontAwesomeIcon icon={faEye} /> Watching Now</span><i></i></button>
-                                                        </Link>
-                                                    ):(
-                                                        ( getStatus( JsCookie.get("code") , buycourses , "padding" ) )?(
-                                                            <button className={" bg-yellow-400 py-[5px] cursor-not-allowed lg:text-sm hover:opacity-[0.6] flex gap-[5px] active:bg-blue-600 text-white px-[15px] rounded mt-[10px] "} ><span> <FontAwesomeIcon className="animate-spin" icon={faSpinner} />CONFIRMING</span><i></i></button>
-                                                        ):(
-                                                            <button className={" bg-yellow-400 py-[3px] lg:text-sm hover:opacity-[0.6] active:bg-blue-600 text-white px-[15px] rounded mt-[10px] "} onClick={()=> navigate.push("/carts") } ><span> <FontAwesomeIcon className="animate-ping duration-300 text-black" icon={faX} /> Wrong TID</span><i></i></button>
-                                                        )
-                                                    )
-                                                ):(
-                                                    <button className={"bg-red-600 text-white rounded px-[10px] text-sm py-0"} onClick={()=> setBuyCourseLoad(true) } ><span>BUY AGAIN</span><i></i></button>
-                                                )
-                                            ):( 
-                                                <button className={"button mt-[10px] "} onClick={()=> setBuyCourseLoad(true) } ><span>ADD TO CART</span><i></i></button>
-                                            )
-                                        )
                                     ):(
                                         <button className={"button mt-[10px] "} onClick={()=> navigate.push("/signin") } ><span>GO TO LOGIN</span><i></i></button>
                                     )
-                                :("")
+                                ):""
+                                        
                             }
                             </>
                     </section>

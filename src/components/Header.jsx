@@ -60,7 +60,7 @@ export default function HeaderComponent(){
                 router.push("/signout")
             }
 
-            const rf =  setInterval(()=>{
+           setInterval(()=>{
                 
                 GenerateNewToken( jsCookie.get("refresh_token") )
                 .then((d)=>{
@@ -71,12 +71,10 @@ export default function HeaderComponent(){
                         // console.log(e)
                         router.push("/signout")
                     })            
-    
-            // } , (1000 * 6) )
-            } , ( 1000 * 60 ) * 5 )
+            // } , 5000 )
+        } , ( 1000 * 60 ) * 5 )
 
             jsCookie.get("isAdmin") == "true" ? setAdmin(true)  : setAdmin(false)
-            return ()=>  clearInterval( rf )
 
         }else{
             setLogined(false)

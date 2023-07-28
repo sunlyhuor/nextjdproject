@@ -79,10 +79,9 @@ export default function SignleCoursePage( { datas_json } ){
         try {
             const datas = await axios.get( BackendLink() + `/api/v1/course/get/videos/${episode}/${course}/${token}` )
             setCheckVideo(true)
-            // console.log(datas)
         } catch (error) {
+            alert("Please buy this course before watching!")
             setCheckVideo(false)
-            // console.log(error)   
         }
     }
 
@@ -132,20 +131,6 @@ export default function SignleCoursePage( { datas_json } ){
 
                             </Head>
                             <section className="min-[0px]:w-11/12 lg:w-7/12" >
-                                {/* {
-                                    checkVideo?(
-                                        <div className="text-center mb-[25px]" >
-                                            <ReactPlayer 
-                                                loop
-                                                playsinline
-                                                controls
-                                                pip={false}
-                                                // onDuration={e=> console.log(e) }
-                                                url={ BackendLink()+`/api/v1/course/get/videos/${EpisodeID}/${CourseID}/${JsCookie.get("access_token")}` } />
-                                        </div>
-                                    ):""
-                                } */}
-
                                 {
                                     !Loading ? (
                                         <>  
@@ -166,25 +151,8 @@ export default function SignleCoursePage( { datas_json } ){
                                                                 <h2 className="text-2xl font-bold " >{ datas_json[0].course_title }</h2>
                                                                 {
                                                                     Logined?(
-                                                                        CheckBuy( JsCookie.get("code") , datas_json[0].buycourses )?(
-                                                                            getExpireDate( JsCookie.get("code") , datas_json[0].buycourses )?(
-                                                                                getStatus( JsCookie.get("code") , datas_json[0].buycourses , "completed" )?(
-                                                                                    <button className={"bg-green-600 text-white px-[20px] rounded py-[3px] mt-[10px] "} ><span>Bought</span><i></i></button>
-                                                                                ):(
-                                                                                    getStatus( JsCookie.get("code") , datas_json[0].buycourses , "padding" )?
-                                                                                    (
-                                                                                        <button className={"button mt-[10px] "} ><span>Comfirming</span><i></i></button>
-                                                                                    ):
-                                                                                    (
-                                                                                        <button className={"button mt-[10px] "} ><span>wrong tid</span><i></i></button>
-                                                                                    )
-                                                                                )
-                                                                            ):(
-                                                                                <button onClick={()=> setBuyCourseLoad(true) } className={"button mt-[10px] "} ><span>buy again</span><i></i></button>
-                                                                            )
-                                                                        ):(
                                                                             <button onClick={()=> setBuyCourseLoad(true) } className={"button mt-[10px] "} ><span>add to cart</span><i></i></button>
-                                                                        )
+                                                                        // )
                                                                         ):(
                                                                             <Link href={"/signin"} ><button className={"button mt-[10px] "} ><span>go to signin</span><i></i></button></Link>
                                                                         )
@@ -250,45 +218,13 @@ export default function SignleCoursePage( { datas_json } ){
                                                         {
                                                             datas_json[0].episodes.map((d,k)=>(
                                                                 Logined?(
-                                                                    CheckBuy( JsCookie.get("code") , datas_json[0].buycourses )?(
-                                                                            getExpireDate( JsCookie.get("code") , datas_json[0].buycourses )?(
-                                                                                getStatus( JsCookie.get("code") , datas_json[0].buycourses , "completed" )?(
-                                                                                    ( d.status.status_id == 2 )?(
-                                                                                        <h1 onClick={()=>{
-                                                                                            getVideo( d.episode_id , datas_json[0].course_id , JsCookie.get("access_token") )
-                                                                                            setCourseID(datas_json[0].course_id)
-                                                                                            setEpisodeID(d.episode_id)
-                                                                                        } } className=" flex items-center cursor-pointer hover:opacity-[0.8] hover:duration-300 active:bg-blue-500 justify-evenly my-[10px] py-[5px] bg-green-400 text-white font-bold rounded text-center" key={k} >
-                                                                                            <span>{d.episode }-{d.episode_title} </span> <FontAwesomeIcon icon={faLockOpen} />
-                                                                                        </h1>
-                                                                                    ):(
-                                                                                        ""
-                                                                                    )
-                                                                                ):(
-                                                                                    getStatus( JsCookie.get("code") , datas_json[0].buycourses , "padding" )?
-                                                                                    (
-                                                                                        <h1 className=" cursor-not-allowed flex items-center justify-evenly my-[10px] py-[5px] bg-red-400 text-white font-bold rounded text-center" key={k} >
-                                                                                            <span>{d.episode }-{d.episode_title} <FontAwesomeIcon icon={faLock} /> </span>  {"Confirming"}
-                                                                                        </h1>
-                                                                                    ):
-                                                                                    (
-                                                                                        <h1 className=" cursor-not-allowed flex items-center justify-evenly my-[10px] py-[5px] bg-red-400 text-white font-bold rounded text-center" key={k} >
-                                                                                            <span>{d.episode }-{d.episode_title} <FontAwesomeIcon icon={faLock} /> </span>  {"Wrong TID"}
-                                                                                        </h1>
-                                                                                    )
-                                                                                )
-                                                                            ):(
-                                                                                    <h1 className=" flex cursor-not-allowed items-center justify-evenly my-[10px] py-[5px] bg-red-400 text-white font-bold rounded text-center" key={k} >
-                                                                                        <span>{d.episode }-{d.episode_title} </span> <FontAwesomeIcon icon={faLock} />
-                                                                                    </h1>
-                                                                            )
-                                                                        )
-                                                                        :(
-                                                                            <h1 className=" flex cursor-not-allowed items-center justify-evenly my-[10px] py-[5px] bg-red-400 text-white font-bold rounded text-center" key={k} >
-                                                                                <span>{d.episode }-{d.episode_title} </span> <FontAwesomeIcon icon={faLock} />
-                                                                            </h1>
-                                                                            // <h1 className=" my-[10px] py-[5px] bg-red-400 text-white font-bold rounded text-center" key={k} >{ d.episode }-{d.episode_title}</h1>
-                                                                        )
+                                                                    <h1 onClick={()=>{
+                                                                        getVideo( d.episode_id , datas_json[0].course_id , JsCookie.get("access_token") )
+                                                                        setCourseID(datas_json[0].course_id)
+                                                                        setEpisodeID(d.episode_id)
+                                                                    } } className=" flex items-center cursor-pointer hover:opacity-[0.8] hover:duration-300 active:bg-blue-500 justify-evenly my-[10px] py-[5px] bg-green-400 text-white font-bold rounded text-center" key={k} >
+                                                                        <span>{d.episode }-{d.episode_title} </span> <FontAwesomeIcon icon={faLockOpen} />
+                                                                    </h1>
                                                                 ):(
                                                                     <h1 className=" flex items-center justify-evenly my-[10px] py-[5px] bg-red-400 text-white font-bold rounded text-center" key={k} >
                                                                         <span>{d.episode }-{d.episode_title} </span> <FontAwesomeIcon icon={faLock} />
