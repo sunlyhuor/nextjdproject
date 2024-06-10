@@ -38,7 +38,6 @@ export default function HomePage(){
         getPopularCourse()
   
     } , [] )
-   
 
     return(
         <main>
