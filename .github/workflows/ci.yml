@@ -27,4 +27,6 @@ jobs:
     - name: Push Image
       run: docker push leehuor/nextjs:latest
     - name: Remove container
+      run: sudo docker rm -f nextjs
+    - name: Run Image as Container
       run: sudo docker run --restart=always --name nextjs -p 3001:3001 -d leehuor/nextjs:latest
