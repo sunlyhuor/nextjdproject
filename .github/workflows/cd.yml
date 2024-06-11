@@ -1,0 +1,29 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+      - completed
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Docker hub login
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+      run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+  
+    - name: Remove container
+      run: sudo docker rm -f nextjs
+      
+    - name: Run Image as Container
+      run: sudo docker run --restart=always --name nextjs -p 3001:3001 -d leehuor/nextjs:latest
+    
