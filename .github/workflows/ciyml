@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    -name: Docker hub login
+      run: docker -u leehuor -p Huor1234@!
+    - name: Build the Docker image
+      run: docker build --name leehuor/nextjs:lastest . --file Dockerfile
+    -name: Push Image
+      run: docker push leehuor/nextjs:latest
