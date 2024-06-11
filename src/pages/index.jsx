@@ -52,6 +52,7 @@ export default function HomePage(){
             <section className="w-10/12 mx-auto p-1 " >
                 <h1 className="font-bold bg-red-600 mb-[10px] inline cursor-pointer text-white px-[10px] py-[5px] rounded-tr-[5px] shadow-lg shadow-[red] hover:shadow-[yellow] hover:opacity-[0.9] transition duration-300" >Populars<FontAwesomeIcon className="" icon={faFireFlameCurved} /> </h1>
                 {/* <CarouselComponent /> */}
+                <h1>Hello testing</h1>
                 <section className="mt-[5px]" >
                 {
                     LoadingPopular?(
