@@ -14,12 +14,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    -name: Docker hub login
+
+    - name: Docker hub login
       env:
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASS: ${{secrets.DOCKER_PASS}}
-      run: docker -u $DOCKER_USER -p $DOCKER_PASS
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+      run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+
     - name: Build the Docker image
-      run: docker build --name leehuor/nextjs:lastest . --file Dockerfile
-    -name: Push Image
+      run: docker build -t leehuor/nextjs:latest . --file Dockerfile
+
+    - name: Push Image
       run: docker push leehuor/nextjs:latest
